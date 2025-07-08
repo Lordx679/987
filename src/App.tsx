@@ -103,21 +103,21 @@ function App() {
   // Welcome Screen
   if (showWelcome) {
     return (
-      <div className="min-h-screen bg-[#151719] flex items-center justify-center relative overflow-hidden">
+      <div className="min-h-screen bg-[#000000] flex items-center justify-center relative overflow-hidden">
         {/* Epic Background Effects */}
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#151719] via-[#3f4b48] to-[#151719]"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-[#000000] via-[#505050] to-[#000000]"></div>
           
           {/* Floating Particles */}
-          <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-[#a9afb2] rounded-full animate-ping opacity-70"></div>
-          <div className="absolute top-3/4 right-1/3 w-1 h-1 bg-[#7d8181] rounded-full animate-pulse opacity-60"></div>
-          <div className="absolute bottom-1/3 left-1/2 w-3 h-3 bg-[#d0d4d7] rounded-full animate-bounce opacity-50"></div>
-          <div className="absolute top-1/2 right-1/4 w-1 h-1 bg-[#a9afb2] rounded-full animate-ping opacity-80"></div>
+          <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-[#A9A9A9] rounded-full animate-ping opacity-70"></div>
+          <div className="absolute top-3/4 right-1/3 w-1 h-1 bg-[#505050] rounded-full animate-pulse opacity-60"></div>
+          <div className="absolute bottom-1/3 left-1/2 w-3 h-3 bg-[#D3D3D3] rounded-full animate-bounce opacity-50"></div>
+          <div className="absolute top-1/2 right-1/4 w-1 h-1 bg-[#A9A9A9] rounded-full animate-ping opacity-80"></div>
           
           {/* Epic Glow Effects */}
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[#7d8181]/10 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute top-1/3 right-1/4 w-64 h-64 bg-[#a9afb2]/5 rounded-full blur-2xl animate-pulse delay-1000"></div>
-          <div className="absolute bottom-1/4 left-1/3 w-48 h-48 bg-[#d0d4d7]/10 rounded-full blur-xl animate-pulse delay-2000"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[#505050]/10 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute top-1/3 right-1/4 w-64 h-64 bg-[#A9A9A9]/5 rounded-full blur-2xl animate-pulse delay-1000"></div>
+          <div className="absolute bottom-1/4 left-1/3 w-48 h-48 bg-[#D3D3D3]/10 rounded-full blur-xl animate-pulse delay-2000"></div>
         </div>
 
         {/* Welcome Content */}
@@ -125,66 +125,66 @@ function App() {
           {/* Legendary Crown Icon */}
           <div className="mb-8 relative">
             <div className="w-24 h-24 mx-auto mb-6 relative animate-bounce">
-              <Crown className="w-full h-full text-[#a9afb2] drop-shadow-2xl animate-pulse" />
-              <div className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-r from-[#7d8181] to-[#a9afb2] rounded-full animate-ping"></div>
-              <div className="absolute -bottom-2 -left-2 w-4 h-4 bg-gradient-to-r from-[#a9afb2] to-[#d0d4d7] rounded-full animate-pulse delay-500"></div>
+              <Crown className="w-full h-full text-[#A9A9A9] drop-shadow-2xl animate-pulse" />
+              <div className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-r from-[#505050] to-[#A9A9A9] rounded-full animate-ping"></div>
+              <div className="absolute -bottom-2 -left-2 w-4 h-4 bg-gradient-to-r from-[#A9A9A9] to-[#D3D3D3] rounded-full animate-pulse delay-500"></div>
             </div>
           </div>
 
           {/* Epic Welcome Text */}
           <div className="space-y-6">
-            <h1 className="text-6xl lg:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#a9afb2] via-[#d0d4d7] to-[#a9afb2] animate-pulse drop-shadow-2xl">
+            <h1 className="text-6xl lg:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#A9A9A9] via-[#D3D3D3] to-[#A9A9A9] animate-pulse drop-shadow-2xl">
               WELCOME
             </h1>
             <div className="flex items-center justify-center space-x-4 text-4xl lg:text-6xl font-bold">
-              <span className="text-[#7d8181] animate-pulse delay-300">TO</span>
+              <span className="text-[#505050] animate-pulse delay-300">TO</span>
               <div className="relative">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#a9afb2] via-[#d0d4d7] to-[#a9afb2] animate-pulse delay-500">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#A9A9A9] via-[#D3D3D3] to-[#A9A9A9] animate-pulse delay-500">
                   LORD
                 </span>
-                <div className="absolute -top-1 -right-1 w-3 h-3 bg-[#7d8181] rounded-full animate-ping"></div>
+                <div className="absolute -top-1 -right-1 w-3 h-3 bg-[#505050] rounded-full animate-ping"></div>
               </div>
             </div>
-            <h2 className="text-5xl lg:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#7d8181] via-[#a9afb2] to-[#d0d4d7] animate-pulse delay-700 drop-shadow-xl">
+            <h2 className="text-5xl lg:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#505050] via-[#A9A9A9] to-[#D3D3D3] animate-pulse delay-700 drop-shadow-xl">
               WORLD
             </h2>
           </div>
 
           {/* Loading Animation */}
           <div className="mt-12">
-            <div className="w-64 h-1 bg-[#3f4b48] rounded-full mx-auto overflow-hidden">
-              <div className="h-full bg-gradient-to-r from-[#7d8181] to-[#a9afb2] rounded-full animate-pulse transform origin-left scale-x-0 animate-[scaleX_4s_ease-in-out_forwards]"></div>
+            <div className="w-64 h-1 bg-[#505050] rounded-full mx-auto overflow-hidden">
+              <div className="h-full bg-gradient-to-r from-[#505050] to-[#A9A9A9] rounded-full animate-pulse transform origin-left scale-x-0 animate-[scaleX_4s_ease-in-out_forwards]"></div>
             </div>
-            <p className="text-[#7d8181] text-sm mt-4 animate-pulse delay-1000">Entering the legendary realm...</p>
+            <p className="text-[#505050] text-sm mt-4 animate-pulse delay-1000">Entering the legendary realm...</p>
           </div>
         </div>
 
         {/* Epic Border Effects */}
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#7d8181] to-transparent animate-pulse"></div>
-        <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#a9afb2] to-transparent animate-pulse delay-500"></div>
-        <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-transparent via-[#d0d4d7] to-transparent animate-pulse delay-1000"></div>
-        <div className="absolute top-0 right-0 w-1 h-full bg-gradient-to-b from-transparent via-[#7d8181] to-transparent animate-pulse delay-1500"></div>
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#505050] to-transparent animate-pulse"></div>
+        <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#A9A9A9] to-transparent animate-pulse delay-500"></div>
+        <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-transparent via-[#D3D3D3] to-transparent animate-pulse delay-1000"></div>
+        <div className="absolute top-0 right-0 w-1 h-full bg-gradient-to-b from-transparent via-[#505050] to-transparent animate-pulse delay-1500"></div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-black text-white relative overflow-hidden">
+    <div className="min-h-screen bg-[#000000] text-[#F0F0F0] relative overflow-hidden">
       {/* Epic Background */}
       <div className="fixed inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-black via-[#505050] to-black"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-[#000000] via-[#505050] to-[#000000]"></div>
         <div className="absolute top-1/2 right-1/4 w-96 h-96 bg-[#505050]/10 rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute bottom-1/4 left-1/3 w-64 h-64 bg-[#A9A9A9]/5 rounded-full blur-2xl"></div>
         <div className="absolute top-1/4 left-1/2 w-32 h-32 bg-[#D3D3D3]/20 rounded-full blur-xl animate-bounce"></div>
       </div>
 
       {/* Legendary Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-md border-b border-[#505050]">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#000000]/90 backdrop-blur-md border-b border-[#505050]">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center space-x-4">
               <div className="w-10 h-10 bg-gradient-to-r from-[#505050] to-[#A9A9A9] rounded-lg flex items-center justify-center relative">
-                <Crown className="h-6 w-6 text-black" />
+                <Crown className="h-6 w-6 text-[#000000]" />
                 <div className="absolute -top-1 -right-1 w-3 h-3 bg-[#A9A9A9] rounded-full animate-ping"></div>
               </div>
               <span className="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#A9A9A9] to-[#D3D3D3]">LORDX679</span>
@@ -221,7 +221,7 @@ function App() {
                 <div className="mb-8">
                   <div className="w-32 h-32 mx-auto mb-8 relative">
                     <div className="w-full h-full bg-gradient-to-r from-[#505050] via-[#A9A9A9] to-[#D3D3D3] rounded-full p-1 animate-pulse">
-                      <div className="w-full h-full bg-black rounded-full flex items-center justify-center overflow-hidden relative">
+                      <div className="w-full h-full bg-[#000000] rounded-full flex items-center justify-center overflow-hidden relative">
                         {/* Avatar Image */}
                         {!avatarError ? (
                           <img 
@@ -244,11 +244,11 @@ function App() {
                       </div>
                     </div>
                     <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-gradient-to-r from-[#505050] to-[#A9A9A9] rounded-full flex items-center justify-center animate-pulse">
-                      <div className="w-3 h-3 bg-black rounded-full"></div>
+                      <div className="w-3 h-3 bg-[#000000] rounded-full"></div>
                     </div>
                   </div>
                   
-                  <h1 className="text-5xl lg:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#A9A9A9] via-[#F0F0F0] to-[#A9A9A9] mb-4 drop-shadow-2xl">
+                  <h1 className="text-5xl lg:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#A9A9A9] via-[#D3D3D3] to-[#A9A9A9] mb-4 drop-shadow-2xl">
                     I'm <span className="text-[#D3D3D3]">LORD</span>
                   </h1>
                   <p className="text-xl lg:text-2xl text-[#A9A9A9] mb-6">
@@ -263,7 +263,7 @@ function App() {
                 </div>
 
                 {/* Personal Info */}
-                <div className="bg-gradient-to-br from-[#505050]/50 to-[#000000]/50 border-2 border-[#505050] rounded-lg p-8 mb-8 shadow-2xl">
+                <div className="bg-gradient-to-br from-[#505050]/30 to-[#000000]/50 border border-[#505050] rounded-lg p-8 mb-8 shadow-2xl">
                   <div className="grid md:grid-cols-2 gap-8 text-left">
                     <div>
                       <h3 className="text-2xl font-bold text-[#D3D3D3] mb-4 flex items-center">
@@ -301,7 +301,7 @@ function App() {
                 <div className="flex flex-wrap justify-center gap-4 mb-12">
                   <button 
                     onClick={() => setActiveSection('connect')}
-                    className="px-8 py-3 border-2 border-[#A9A9A9] text-[#D3D3D3] font-bold rounded-lg hover:bg-[#A9A9A9] hover:text-[#000000] transition-all duration-300 shadow-xl"
+                    className="px-8 py-3 border border-[#A9A9A9] text-[#D3D3D3] font-bold rounded-lg hover:bg-[#A9A9A9] hover:text-[#000000] transition-all duration-300 shadow-xl"
                   >
                     Get In Touch
                   </button>
@@ -310,7 +310,7 @@ function App() {
 
               <div className="grid md:grid-cols-3 gap-8">
                 {skills.map((skill, index) => (
-                  <div key={index} className="bg-gradient-to-br from-[#505050]/50 to-[#000000]/50 border-2 border-[#505050] rounded-lg p-6 hover:border-[#A9A9A9] transition-all duration-300 shadow-2xl group">
+                  <div key={index} className="bg-gradient-to-br from-[#505050]/30 to-[#000000]/50 border border-[#505050] rounded-lg p-6 hover:border-[#A9A9A9] transition-all duration-300 shadow-2xl group">
                     <div className="flex items-center mb-4">
                       <skill.icon className="h-8 w-8 text-[#A9A9A9] mr-3 group-hover:text-[#D3D3D3] transition-colors" />
                       <h4 className="text-lg font-bold text-[#D3D3D3]">{skill.category}</h4>
@@ -336,7 +336,7 @@ function App() {
             <div className="max-w-7xl mx-auto">
               {/* Header */}
               <div className="text-center mb-16">
-                <h2 className="text-4xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#A9A9A9] to-[#F0F0F0] mb-6 drop-shadow-xl">
+                <h2 className="text-4xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#A9A9A9] to-[#D3D3D3] mb-6 drop-shadow-xl">
                   Let's Connect & Create
                 </h2>
                 <p className="text-xl text-[#A9A9A9] max-w-3xl mx-auto mb-8">
@@ -352,7 +352,7 @@ function App() {
                   </div>
                   <div className="flex items-center space-x-2">
                     <div className={`w-3 h-3 rounded-full ${isWorkingHours() ? 'bg-green-500 animate-pulse' : 'bg-red-500'}`}></div>
-                    <span className="text-[#F0F0F0]">
+                    <span className="text-[#D3D3D3]">
                       {isWorkingHours() ? 'Available Now' : 'Outside Working Hours'}
                     </span>
                   </div>
@@ -367,14 +367,14 @@ function App() {
                     href={method.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-gradient-to-br from-[#505050]/50 to-[#000000]/50 border-2 border-[#505050] rounded-lg p-6 hover:border-[#A9A9A9] transition-all duration-300 shadow-2xl group hover:scale-105 block"
+                    className="bg-gradient-to-br from-[#505050]/30 to-[#000000]/50 border border-[#505050] rounded-lg p-6 hover:border-[#A9A9A9] transition-all duration-300 shadow-2xl group hover:scale-105 block"
                   >
                     <div className="text-center">
                       <div className={`w-16 h-16 bg-gradient-to-r ${method.color} rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300`}>
                         <method.icon className="h-8 w-8 text-[#000000]" />
                       </div>
                       <h3 className="text-xl font-bold text-[#D3D3D3] mb-2">{method.title}</h3>
-                      <p className="text-[#F0F0F0] font-mono text-sm mb-2">{method.value}</p>
+                      <p className="text-[#D3D3D3] font-mono text-sm mb-2">{method.value}</p>
                       <p className="text-[#A9A9A9] text-xs">{method.description}</p>
                       <div className="mt-3 flex items-center justify-center">
                         <ExternalLink className="h-4 w-4 text-[#A9A9A9] group-hover:text-[#D3D3D3] transition-colors" />
@@ -388,7 +388,7 @@ function App() {
               <div className="max-w-4xl mx-auto">
 
                 {/* Social Media Links */}
-                <div className="bg-gradient-to-br from-[#505050]/50 to-[#000000]/50 border-2 border-[#505050] rounded-lg p-6 shadow-2xl">
+                <div className="bg-gradient-to-br from-[#505050]/30 to-[#000000]/50 border border-[#505050] rounded-lg p-6 shadow-2xl">
                   <div className="flex items-center mb-4">
                     <Globe className="h-6 w-6 text-[#A9A9A9] mr-3" />
                     <h3 className="text-xl font-bold text-[#D3D3D3]">Follow My Journey</h3>
@@ -405,7 +405,7 @@ function App() {
                         <div className="flex items-center space-x-3">
                           <link.icon className="h-5 w-5 text-[#A9A9A9] group-hover:text-[#D3D3D3] transition-colors" />
                           <div>
-                            <span className="text-[#F0F0F0] font-medium">{link.name}</span>
+                            <span className="text-[#D3D3D3] font-medium">{link.name}</span>
                             <p className="text-[#A9A9A9] text-xs">{link.description}</p>
                           </div>
                         </div>
