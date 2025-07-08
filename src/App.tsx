@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Github, MessageCircle, Instagram, Crown, User, Mail, ExternalLink, Code, Database, Cpu, MapPin, Calendar, Clock, Phone, Globe, Star, Heart, Zap } from 'lucide-react';
+import { MessageCircle, Instagram, Crown, User, Mail, ExternalLink, MapPin, Calendar, Clock, Globe, Star, Heart, Gamepad2 } from 'lucide-react';
 
 function App() {
   const [currentTime, setCurrentTime] = useState(new Date());
@@ -31,50 +31,85 @@ function App() {
     { 
       name: 'Discord', 
       icon: MessageCircle, 
-      url: '#', 
-      color: 'hover:text-[#D3D3D3]',
-      description: 'Connect with me on Discord',
-      followers: 'LORDX679#0000'
+      url: 'https://discord.com/users/1c.2', 
+      color: 'hover:text-[#7289DA]',
+      description: 'Chat with me on Discord',
+      username: '1c.2'
     },
     { 
       name: 'Instagram', 
       icon: Instagram, 
       url: 'https://www.instagram.com/lordx679', 
-      color: 'hover:text-[#D3D3D3]',
-      description: 'Follow my creative journey',
-      followers: '850+'
+      color: 'hover:text-[#E4405F]',
+      description: 'Follow my daily life',
+      username: '@lordx679'
+    },
+    { 
+      name: 'Roblox', 
+      icon: Gamepad2, 
+      url: 'https://www.roblox.com/users/profile?username=aoufabok', 
+      color: 'hover:text-[#00A2FF]',
+      description: 'Play games with me',
+      username: 'aoufabok'
     },
   ];
 
   const contactMethods = [
     {
+      icon: MessageCircle,
+      title: 'Discord',
+      value: '1c.2',
+      description: 'Chat with me anytime',
+      color: 'from-[#7289DA] to-[#5865F2]',
+      url: 'https://discord.com/users/1c.2'
+    },
+    {
       icon: Instagram,
       title: 'Instagram',
       value: '@lordx679',
-      description: 'Follow my creative journey',
-      color: 'from-[#A9A9A9] to-[#F0F0F0]',
+      description: 'Follow my daily adventures',
+      color: 'from-[#E4405F] to-[#F56040]',
       url: 'https://www.instagram.com/lordx679'
+    },
+    {
+      icon: Mail,
+      title: 'Email',
+      value: 'ibraff739@gmail.com',
+      description: 'Send me a message',
+      color: 'from-[#EA4335] to-[#FBBC04]',
+      url: 'mailto:ibraff739@gmail.com'
+    },
+    {
+      icon: Gamepad2,
+      title: 'Roblox',
+      value: 'aoufabok',
+      description: 'Let\'s play together',
+      color: 'from-[#00A2FF] to-[#0066CC]',
+      url: 'https://www.roblox.com/users/profile?username=aoufabok'
     }
   ];
 
-  const skills = [
+  const interests = [
     { 
-      category: 'Frontend Development', 
-      items: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'JavaScript'], 
-      icon: Code, 
-      color: 'from-[#505050] to-[#A9A9A9]' 
+      category: 'Gaming', 
+      items: ['Roblox', 'Mobile Games', 'Strategy Games', 'Adventure Games', 'Multiplayer'], 
+      icon: Gamepad2, 
+      color: 'from-[#505050] to-[#A9A9A9]',
+      accent: '#00A2FF'
     },
     { 
-      category: 'Backend Development', 
-      items: ['Node.js', 'Python', 'PostgreSQL', 'MongoDB', 'Express.js'], 
-      icon: Database, 
-      color: 'from-[#A9A9A9] to-[#D3D3D3]' 
+      category: 'Social Media', 
+      items: ['Instagram Stories', 'Discord Communities', 'Content Creation', 'Photography', 'Memes'], 
+      icon: Instagram, 
+      color: 'from-[#A9A9A9] to-[#D3D3D3]',
+      accent: '#E4405F'
     },
     { 
-      category: 'Tools & Technologies', 
-      items: ['Git', 'Docker', 'AWS', 'Figma', 'VS Code'], 
-      icon: Cpu, 
-      color: 'from-[#D3D3D3] to-[#F0F0F0]' 
+      category: 'Hobbies', 
+      items: ['Music', 'Movies', 'Anime', 'Travel', 'Food'], 
+      icon: Heart, 
+      color: 'from-[#D3D3D3] to-[#F0F0F0]',
+      accent: '#FF6B35'
     },
   ];
 
@@ -86,7 +121,7 @@ function App() {
     hour12: true
   });
 
-  const isWorkingHours = () => {
+  const isOnline = () => {
     const now = new Date();
     const italyHour = parseInt(new Date().toLocaleString('en-US', {
       timeZone: 'Europe/Rome',
@@ -95,9 +130,10 @@ function App() {
     }));
     const day = now.getDay(); // 0 = Sunday, 1 = Monday, etc.
     
-    if (day === 0) return false; // Sunday
-    if (day === 6) return italyHour >= 10 && italyHour < 16; // Saturday
-    return italyHour >= 9 && italyHour < 18; // Monday-Friday
+    // More relaxed online hours for personal site
+    if (day === 0) return italyHour >= 12 && italyHour < 23; // Sunday
+    if (day === 6) return italyHour >= 10 && italyHour < 24; // Saturday
+    return italyHour >= 8 && italyHour < 23; // Monday-Friday
   };
 
   // Welcome Screen
@@ -109,15 +145,15 @@ function App() {
           <div className="absolute inset-0 bg-gradient-to-br from-[#000000] via-[#505050] to-[#000000]"></div>
           
           {/* Floating Particles */}
-          <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-[#A9A9A9] rounded-full animate-ping opacity-70"></div>
-          <div className="absolute top-3/4 right-1/3 w-1 h-1 bg-[#505050] rounded-full animate-pulse opacity-60"></div>
-          <div className="absolute bottom-1/3 left-1/2 w-3 h-3 bg-[#D3D3D3] rounded-full animate-bounce opacity-50"></div>
-          <div className="absolute top-1/2 right-1/4 w-1 h-1 bg-[#A9A9A9] rounded-full animate-ping opacity-80"></div>
+          <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-[#7289DA] rounded-full animate-ping opacity-70"></div>
+          <div className="absolute top-3/4 right-1/3 w-1 h-1 bg-[#E4405F] rounded-full animate-pulse opacity-60"></div>
+          <div className="absolute bottom-1/3 left-1/2 w-3 h-3 bg-[#00A2FF] rounded-full animate-bounce opacity-50"></div>
+          <div className="absolute top-1/2 right-1/4 w-1 h-1 bg-[#FF6B35] rounded-full animate-ping opacity-80"></div>
           
           {/* Epic Glow Effects */}
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[#505050]/10 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute top-1/3 right-1/4 w-64 h-64 bg-[#A9A9A9]/5 rounded-full blur-2xl animate-pulse delay-1000"></div>
-          <div className="absolute bottom-1/4 left-1/3 w-48 h-48 bg-[#D3D3D3]/10 rounded-full blur-xl animate-pulse delay-2000"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[#7289DA]/5 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute top-1/3 right-1/4 w-64 h-64 bg-[#E4405F]/3 rounded-full blur-2xl animate-pulse delay-1000"></div>
+          <div className="absolute bottom-1/4 left-1/3 w-48 h-48 bg-[#00A2FF]/5 rounded-full blur-xl animate-pulse delay-2000"></div>
         </div>
 
         {/* Welcome Content */}
@@ -127,7 +163,7 @@ function App() {
             <div className="w-24 h-24 mx-auto mb-6 relative animate-bounce">
               <Crown className="w-full h-full text-[#A9A9A9] drop-shadow-2xl animate-pulse" />
               <div className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-r from-[#505050] to-[#A9A9A9] rounded-full animate-ping"></div>
-              <div className="absolute -bottom-2 -left-2 w-4 h-4 bg-gradient-to-r from-[#A9A9A9] to-[#D3D3D3] rounded-full animate-pulse delay-500"></div>
+              <div className="absolute -bottom-2 -left-2 w-4 h-4 bg-gradient-to-r from-[#7289DA] to-[#00A2FF] rounded-full animate-pulse delay-500"></div>
             </div>
           </div>
 
@@ -153,9 +189,9 @@ function App() {
           {/* Loading Animation */}
           <div className="mt-12">
             <div className="w-64 h-1 bg-[#505050] rounded-full mx-auto overflow-hidden">
-              <div className="h-full bg-gradient-to-r from-[#505050] to-[#A9A9A9] rounded-full animate-pulse transform origin-left scale-x-0 animate-[scaleX_4s_ease-in-out_forwards]"></div>
+              <div className="h-full bg-gradient-to-r from-[#7289DA] via-[#E4405F] to-[#00A2FF] rounded-full animate-pulse transform origin-left scale-x-0 animate-[scaleX_4s_ease-in-out_forwards]"></div>
             </div>
-            <p className="text-[#505050] text-sm mt-4 animate-pulse delay-1000">Entering the legendary realm...</p>
+            <p className="text-[#505050] text-sm mt-4 animate-pulse delay-1000">Entering my personal space...</p>
           </div>
         </div>
 
@@ -174,8 +210,8 @@ function App() {
       <div className="fixed inset-0">
         <div className="absolute inset-0 bg-gradient-to-br from-[#000000] via-[#505050] to-[#000000]"></div>
         <div className="absolute top-1/2 right-1/4 w-96 h-96 bg-[#505050]/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 left-1/3 w-64 h-64 bg-[#A9A9A9]/5 rounded-full blur-2xl"></div>
-        <div className="absolute top-1/4 left-1/2 w-32 h-32 bg-[#D3D3D3]/20 rounded-full blur-xl animate-bounce"></div>
+        <div className="absolute bottom-1/4 left-1/3 w-64 h-64 bg-[#E4405F]/3 rounded-full blur-2xl"></div>
+        <div className="absolute top-1/4 left-1/2 w-32 h-32 bg-[#7289DA]/10 rounded-full blur-xl animate-bounce"></div>
       </div>
 
       {/* Legendary Navigation */}
@@ -249,16 +285,26 @@ function App() {
                   </div>
                   
                   <h1 className="text-5xl lg:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#A9A9A9] via-[#D3D3D3] to-[#A9A9A9] mb-4 drop-shadow-2xl">
-                    I'm <span className="text-[#D3D3D3]">LORD</span>
+                    Hey, I'm <span className="text-[#D3D3D3]">LORD</span>
                   </h1>
                   <p className="text-xl lg:text-2xl text-[#A9A9A9] mb-6">
-                    Full-Stack Developer & Digital Creator
+                    18 Years Old • Gamer • Content Creator
                   </p>
                   
-                  {/* Discord Info */}
-                  <div className="text-sm text-[#D3D3D3] mb-4 flex items-center justify-center space-x-2">
-                    <MessageCircle className="h-4 w-4" />
-                    <span>Discord: LORDX679#0000</span>
+                  {/* Quick Contact Info */}
+                  <div className="flex flex-wrap justify-center gap-4 text-sm text-[#D3D3D3] mb-4">
+                    <div className="flex items-center space-x-2">
+                      <MessageCircle className="h-4 w-4" />
+                      <span>Discord: 1c.2</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <Instagram className="h-4 w-4" />
+                      <span>Instagram: @lordx679</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <Gamepad2 className="h-4 w-4" />
+                      <span>Roblox: aoufabok</span>
+                    </div>
                   </div>
                 </div>
 
@@ -292,7 +338,7 @@ function App() {
                     <div>
                       <h3 className="text-2xl font-bold text-[#D3D3D3] mb-4">My Story</h3>
                       <p className="text-[#F0F0F0] leading-relaxed text-sm">
-                        I'm LORD — an 18-year-old Moroccan developer living in Italy, building digital experiences with precision, depth, and purpose. I don't just write code — I design presence. Every project I build is grounded in vision, driven by a quiet obsession with detail, motion, and feel. My work isn't noise or flash — it's clarity, flow, and control. I draw inspiration from the logic of code, the elegance of minimal design, and the hidden weight of anime stories — I don't aim to impress, I aim to leave a mark. A sharp one. A real one. Technology is my weapon. The web is my battlefield. Whether it's a fluid UI, an animated portfolio, or a system built from the ground up — I move in silence, but my work speaks loud. You won't find everything about me in the code — but read between the lines, and you'll know exactly who I am.
+                        Hey there! I'm LORD, an 18-year-old guy originally from Morocco but living in Italy. I love gaming, especially on Roblox where you can find me as aoufabok. When I'm not gaming, I'm probably scrolling through Instagram, chatting with friends on Discord, or just chilling and enjoying life. I'm always up for meeting new people and having fun conversations. Feel free to hit me up on any of my socials - I'm pretty active and love connecting with new friends from around the world!
                       </p>
                     </div>
                   </div>
@@ -301,24 +347,26 @@ function App() {
                 <div className="flex flex-wrap justify-center gap-4 mb-12">
                   <button 
                     onClick={() => setActiveSection('connect')}
-                    className="px-8 py-3 border border-[#A9A9A9] text-[#D3D3D3] font-bold rounded-lg hover:bg-[#A9A9A9] hover:text-[#000000] transition-all duration-300 shadow-xl"
+                    className="px-8 py-3 border border-[#A9A9A9] text-[#D3D3D3] font-bold rounded-lg hover:bg-gradient-to-r hover:from-[#7289DA] hover:to-[#00A2FF] hover:text-[#000000] hover:border-transparent transition-all duration-300 shadow-xl"
                   >
-                    Get In Touch
+                    Let's Connect!
                   </button>
                 </div>
               </div>
 
               <div className="grid md:grid-cols-3 gap-8">
-                {skills.map((skill, index) => (
-                  <div key={index} className="bg-gradient-to-br from-[#505050]/30 to-[#000000]/50 border border-[#505050] rounded-lg p-6 hover:border-[#A9A9A9] transition-all duration-300 shadow-2xl group">
+                {interests.map((interest, index) => (
+                  <div key={index} className="bg-gradient-to-br from-[#505050]/30 to-[#000000]/50 border border-[#505050] rounded-lg p-6 hover:border-[#A9A9A9] hover:shadow-[0_0_30px_rgba(114,137,218,0.1)] transition-all duration-300 shadow-2xl group relative overflow-hidden">
+                    {/* Accent glow effect */}
+                    <div className={`absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-5 transition-opacity duration-300`} style={{background: `linear-gradient(135deg, ${interest.accent}20, transparent)`}}></div>
                     <div className="flex items-center mb-4">
-                      <skill.icon className="h-8 w-8 text-[#A9A9A9] mr-3 group-hover:text-[#D3D3D3] transition-colors" />
-                      <h4 className="text-lg font-bold text-[#D3D3D3]">{skill.category}</h4>
+                      <interest.icon className={`h-8 w-8 text-[#A9A9A9] mr-3 group-hover:transition-colors relative z-10`} style={{color: `var(--hover-color, #D3D3D3)`}} onMouseEnter={(e) => e.currentTarget.style.setProperty('--hover-color', interest.accent)} onMouseLeave={(e) => e.currentTarget.style.setProperty('--hover-color', '#D3D3D3')} />
+                      <h4 className="text-lg font-bold text-[#D3D3D3] relative z-10">{interest.category}</h4>
                     </div>
-                    <div className="space-y-2">
-                      {skill.items.map((item, idx) => (
+                    <div className="space-y-2 relative z-10">
+                      {interest.items.map((item, idx) => (
                         <div key={idx} className="text-[#F0F0F0] text-sm flex items-center">
-                          <div className="w-2 h-2 bg-[#A9A9A9] rounded-full mr-3"></div>
+                          <div className={`w-2 h-2 bg-[#A9A9A9] group-hover:transition-colors rounded-full mr-3`} style={{backgroundColor: `var(--dot-color, #A9A9A9)`}} onMouseEnter={(e) => e.currentTarget.style.setProperty('--dot-color', interest.accent)} onMouseLeave={(e) => e.currentTarget.style.setProperty('--dot-color', '#A9A9A9')}></div>
                           {item}
                         </div>
                       ))}
@@ -337,11 +385,11 @@ function App() {
               {/* Header */}
               <div className="text-center mb-16">
                 <h2 className="text-4xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#A9A9A9] to-[#D3D3D3] mb-6 drop-shadow-xl">
-                  Let's Connect & Create
+                  Let's Be Friends!
                 </h2>
                 <p className="text-xl text-[#A9A9A9] max-w-3xl mx-auto mb-8">
-                  Ready to bring your ideas to life? I'm here to help you build something extraordinary. 
-                  Choose your preferred way to reach out and let's start the conversation.
+                  I'm always excited to meet new people and make friends from around the world! 
+                  Hit me up on any of these platforms - I'm pretty active and love chatting.
                 </p>
                 
                 {/* Current Time & Status */}
@@ -351,16 +399,16 @@ function App() {
                     <span className="text-[#D3D3D3]">Italy Time: {italyTime}</span>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <div className={`w-3 h-3 rounded-full ${isWorkingHours() ? 'bg-green-500 animate-pulse' : 'bg-red-500'}`}></div>
+                    <div className={`w-3 h-3 rounded-full ${isOnline() ? 'bg-[#00FF00] animate-pulse shadow-[0_0_10px_rgba(0,255,0,0.5)]' : 'bg-[#FF4444] shadow-[0_0_10px_rgba(255,68,68,0.3)]'}`}></div>
                     <span className="text-[#D3D3D3]">
-                      {isWorkingHours() ? 'Available Now' : 'Outside Working Hours'}
+                      {isOnline() ? 'Online & Ready to Chat!' : 'Probably Sleeping 😴'}
                     </span>
                   </div>
                 </div>
               </div>
 
               {/* Contact Methods Grid */}
-              <div className="grid lg:grid-cols-2 gap-8 mb-12 max-w-4xl mx-auto">
+              <div className="grid lg:grid-cols-2 gap-8 mb-12 max-w-6xl mx-auto">
                 {contactMethods.map((method, index) => (
                   <a
                     key={index}
@@ -370,7 +418,7 @@ function App() {
                     className="bg-gradient-to-br from-[#505050]/30 to-[#000000]/50 border border-[#505050] rounded-lg p-6 hover:border-[#A9A9A9] transition-all duration-300 shadow-2xl group hover:scale-105 block"
                   >
                     <div className="text-center">
-                      <div className={`w-16 h-16 bg-gradient-to-r ${method.color} rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                      <div className={`w-16 h-16 bg-gradient-to-r ${method.color} rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(114,137,218,0.4)] transition-all duration-300`}>
                         <method.icon className="h-8 w-8 text-[#000000]" />
                       </div>
                       <h3 className="text-xl font-bold text-[#D3D3D3] mb-2">{method.title}</h3>
@@ -386,12 +434,11 @@ function App() {
 
               {/* Main Content Grid */}
               <div className="max-w-4xl mx-auto">
-
                 {/* Social Media Links */}
                 <div className="bg-gradient-to-br from-[#505050]/30 to-[#000000]/50 border border-[#505050] rounded-lg p-6 shadow-2xl">
                   <div className="flex items-center mb-4">
                     <Globe className="h-6 w-6 text-[#A9A9A9] mr-3" />
-                    <h3 className="text-xl font-bold text-[#D3D3D3]">Follow My Journey</h3>
+                    <h3 className="text-xl font-bold text-[#D3D3D3]">Find Me Online</h3>
                   </div>
                   <div className="space-y-4">
                     {socialLinks.map((link, index) => (
@@ -403,14 +450,17 @@ function App() {
                         className="flex items-center justify-between p-3 bg-[#000000]/50 rounded-lg hover:bg-[#505050]/30 transition-all duration-300 group"
                       >
                         <div className="flex items-center space-x-3">
-                          <link.icon className="h-5 w-5 text-[#A9A9A9] group-hover:text-[#D3D3D3] transition-colors" />
+                          <link.icon className={`h-5 w-5 text-[#A9A9A9] transition-colors`} style={{color: `var(--icon-color, #A9A9A9)`}} onMouseEnter={(e) => {
+                            const color = link.name === 'Discord' ? '#7289DA' : link.name === 'Instagram' ? '#E4405F' : '#00A2FF';
+                            e.currentTarget.style.setProperty('--icon-color', color);
+                          }} onMouseLeave={(e) => e.currentTarget.style.setProperty('--icon-color', '#A9A9A9')} />
                           <div>
                             <span className="text-[#D3D3D3] font-medium">{link.name}</span>
                             <p className="text-[#A9A9A9] text-xs">{link.description}</p>
                           </div>
                         </div>
                         <div className="flex items-center space-x-2">
-                          <span className="text-[#D3D3D3] text-sm font-bold">{link.followers}</span>
+                          <span className="text-[#D3D3D3] text-sm font-bold">{link.username}</span>
                           <ExternalLink className="h-4 w-4 text-[#A9A9A9] group-hover:text-[#D3D3D3] transition-colors" />
                         </div>
                       </a>
