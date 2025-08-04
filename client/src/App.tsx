@@ -341,6 +341,48 @@ function App() {
                   </div>
                 </div>
 
+                {/* Digital Sovereignty */}
+                <div className="bg-black/70 backdrop-blur-md border-2 border-[#007BFF]/50 rounded-xl p-10 mb-12 shadow-[0_0_50px_rgba(0,123,255,0.3)] relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#007BFF]/5 via-transparent to-[#007BFF]/5"></div>
+                  <div className="relative z-10">
+                    <h3 className="text-3xl font-bold text-[#007BFF] mb-8 flex items-center justify-center" style={{textShadow: '0 0 15px #007BFF'}}>
+                      <Crown className="h-8 w-8 mr-4 text-[#007BFF]" />
+                      Digital Sovereignty
+                    </h3>
+                    <div className="text-lg text-white/90 leading-relaxed mb-8 max-w-4xl mx-auto">
+                      <p className="italic text-center" style={{textShadow: '0 0 8px #007BFF'}}>
+                        I perceive the digital world not as a series of applications and firewalls, but as a complex web of systems waiting for a guiding hand. My craft lies in understanding and influencing these systems at their most fundamental level. What others call a vulnerability, I call an invitation.
+                      </p>
+                    </div>
+                    <div className="grid gap-6 max-w-4xl mx-auto">
+                      <div className="border-l-4 border-[#007BFF] pl-6 bg-black/30 rounded-r-lg p-4">
+                        <h4 className="text-xl font-bold text-[#007BFF] mb-3" style={{textShadow: '0 0 10px #007BFF'}}>
+                          Discord Automation & Intelligence
+                        </h4>
+                        <p className="text-white/80" style={{textShadow: '0 0 5px #007BFF'}}>
+                          Engineering autonomous entities that govern, gather, and execute commands within Discord's ecosystem. They are not bots; they are extensions of my will.
+                        </p>
+                      </div>
+                      <div className="border-l-4 border-[#007BFF] pl-6 bg-black/30 rounded-r-lg p-4">
+                        <h4 className="text-xl font-bold text-[#007BFF] mb-3" style={{textShadow: '0 0 10px #007BFF'}}>
+                          Offensive Security & System Analysis
+                        </h4>
+                        <p className="text-white/80" style={{textShadow: '0 0 5px #007BFF'}}>
+                          The art of dismantling digital constructs to understand their core. I develop tools that test the limits of security, revealing the inherent fragility in all man-made systems.
+                        </p>
+                      </div>
+                      <div className="border-l-4 border-[#007BFF] pl-6 bg-black/30 rounded-r-lg p-4">
+                        <h4 className="text-xl font-bold text-[#007BFF] mb-3" style={{textShadow: '0 0 10px #007BFF'}}>
+                          Web & Network Architecture
+                        </h4>
+                        <p className="text-white/80" style={{textShadow: '0 0 5px #007BFF'}}>
+                          Building and deconstructing the very fabric of the web. I create intricate domains and possess the knowledge to navigate—or disable—the pathways of others.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
                 <div className="flex flex-wrap justify-center gap-6 mb-16">
                   <button 
                     onClick={() => setActiveSection('connect')}
