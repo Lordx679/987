@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { MessageCircle, Instagram, Crown, User, Mail, ExternalLink, MapPin, Calendar, Clock, Globe, Star, Heart, Gamepad2, Eye, Zap } from 'lucide-react';
+import { MessageCircle, Instagram, Trophy, User, Mail, ExternalLink, MapPin, Calendar, Clock, Globe, Star, Heart, Gamepad2, Eye, Zap } from 'lucide-react';
 import { useDiscordAvatar } from './hooks/useUserData';
 
 function App() {
@@ -109,7 +109,7 @@ function App() {
     { 
       category: 'Cultural Intelligence', 
       items: ['Strategic Analysis', 'Pattern Recognition', 'Ideological Navigation', 'Precognitive Strategy'], 
-      icon: Crown, 
+      icon: Trophy, 
       color: 'from-[#1a1a1a] to-[#2a2a2a]',
       accent: '#007BFF'
     },
@@ -160,10 +160,10 @@ function App() {
 
         {/* Divine Presence Content */}
         <div className="relative z-10 text-center">
-          {/* Divine Crown Icon */}
+          {/* Divine Trophy Icon */}
           <div className="mb-8 relative">
             <div className="w-32 h-32 mx-auto mb-6 relative">
-              <Crown className="w-full h-full text-[#007BFF] drop-shadow-2xl animate-pulse shadow-[0_0_30px_#007BFF]" />
+              <Trophy className="w-full h-full text-[#007BFF] drop-shadow-2xl animate-pulse shadow-[0_0_30px_#007BFF]" />
               <div className="absolute -top-2 -right-2 w-8 h-8 bg-[#007BFF] rounded-full animate-ping shadow-[0_0_20px_#007BFF]"></div>
               <div className="absolute -bottom-2 -left-2 w-6 h-6 bg-[#007BFF] rounded-full animate-pulse delay-500 shadow-[0_0_15px_#007BFF]"></div>
               <div className="absolute inset-0 bg-[#007BFF]/20 rounded-full blur-xl animate-pulse"></div>
@@ -225,7 +225,7 @@ function App() {
           <div className="flex items-center justify-between h-20">
             <div className="flex items-center space-x-4">
               <div className="w-12 h-12 bg-gradient-to-r from-[#007BFF] to-[#0056CC] rounded-lg flex items-center justify-center relative shadow-[0_0_25px_#007BFF] border-2 border-[#007BFF]/40">
-                <Crown className="h-7 w-7 text-white" />
+                <Trophy className="h-7 w-7 text-white" />
                 <div className="absolute -top-1 -right-1 w-4 h-4 bg-[#007BFF] rounded-full animate-ping shadow-[0_0_10px_#007BFF] border border-white/30"></div>
                 <div className="absolute inset-0 bg-[#007BFF]/30 rounded-lg blur-lg"></div>
               </div>
@@ -284,8 +284,8 @@ function App() {
                             }}
                           />
                         ) : (
-                          /* Crown Fallback */
-                          <Crown className="h-20 w-20 text-[#007BFF]" style={{filter: 'drop-shadow(0 0 10px #007BFF)'}} />
+                          /* Trophy Fallback */
+                          <Trophy className="h-20 w-20 text-[#007BFF]" style={{filter: 'drop-shadow(0 0 10px #007BFF)'}} />
                         )}
                       </div>
                     </div>
