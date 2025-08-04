@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { MessageCircle, Instagram, Crown, User, Mail, ExternalLink, MapPin, Calendar, Clock, Globe, Star, Heart, Gamepad2, Eye, Zap } from 'lucide-react';
+import { MessageCircle, Instagram, Crown, User, Mail, ExternalLink, MapPin, Calendar, Clock, Globe, Star, Heart, Gamepad2, Eye, Zap, Shield } from 'lucide-react';
 import { useDiscordAvatar } from './hooks/useUserData';
 
 function App() {
@@ -234,6 +234,7 @@ function App() {
             <div className="flex items-center space-x-8">
               {[
                 { key: 'about', label: 'Domain' },
+                { key: 'core', label: 'Core Logic' },
                 { key: 'connect', label: 'Interface' }
               ].map((section) => (
                 <button
@@ -341,47 +342,7 @@ function App() {
                   </div>
                 </div>
 
-                {/* Core Logic */}
-                <div className="bg-black/70 backdrop-blur-md border-2 border-[#007BFF]/50 rounded-xl p-10 mb-12 shadow-[0_0_50px_rgba(0,123,255,0.3)] relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#007BFF]/5 via-transparent to-[#007BFF]/5"></div>
-                  <div className="relative z-10">
-                    <h3 className="text-3xl font-bold text-[#007BFF] mb-8 flex items-center justify-center" style={{textShadow: '0 0 15px #007BFF'}}>
-                      <Zap className="h-8 w-8 mr-4 text-[#007BFF]" />
-                      Core Logic
-                    </h3>
-                    <div className="text-lg text-white/90 leading-relaxed mb-8 max-w-4xl mx-auto">
-                      <p className="italic text-center" style={{textShadow: '0 0 8px #007BFF'}}>
-                        I perceive the digital world not as a series of applications and firewalls, but as a complex web of systems waiting for a guiding hand. My craft lies in understanding and influencing these systems at their most fundamental level. What others call a vulnerability, I call an invitation.
-                      </p>
-                    </div>
-                    <div className="grid gap-6 max-w-4xl mx-auto">
-                      <div className="border-l-4 border-[#007BFF] pl-6 bg-black/30 rounded-r-lg p-4">
-                        <h4 className="text-xl font-bold text-[#007BFF] mb-3" style={{textShadow: '0 0 10px #007BFF'}}>
-                          Discord Automation & Intelligence
-                        </h4>
-                        <p className="text-white/80" style={{textShadow: '0 0 5px #007BFF'}}>
-                          Engineering autonomous entities that govern, gather, and execute commands within Discord's ecosystem. They are not bots; they are extensions of my will.
-                        </p>
-                      </div>
-                      <div className="border-l-4 border-[#007BFF] pl-6 bg-black/30 rounded-r-lg p-4">
-                        <h4 className="text-xl font-bold text-[#007BFF] mb-3" style={{textShadow: '0 0 10px #007BFF'}}>
-                          Offensive Security & System Analysis
-                        </h4>
-                        <p className="text-white/80" style={{textShadow: '0 0 5px #007BFF'}}>
-                          The art of dismantling digital constructs to understand their core. I develop tools that test the limits of security, revealing the inherent fragility in all man-made systems.
-                        </p>
-                      </div>
-                      <div className="border-l-4 border-[#007BFF] pl-6 bg-black/30 rounded-r-lg p-4">
-                        <h4 className="text-xl font-bold text-[#007BFF] mb-3" style={{textShadow: '0 0 10px #007BFF'}}>
-                          Web & Network Architecture
-                        </h4>
-                        <p className="text-white/80" style={{textShadow: '0 0 5px #007BFF'}}>
-                          Building and deconstructing the very fabric of the web. I create intricate domains and possess the knowledge to navigate—or disable—the pathways of others.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+
 
                 <div className="flex flex-wrap justify-center gap-6 mb-16">
                   <button 
@@ -413,6 +374,59 @@ function App() {
                     </div>
                   </div>
                 ))}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Core Logic Section */}
+        {activeSection === 'core' && (
+          <div className="min-h-screen px-6 py-24">
+            <div className="max-w-7xl mx-auto">
+              {/* Core Logic Header */}
+              <div className="text-center mb-20">
+                <h2 className="text-5xl lg:text-7xl font-black text-white mb-8 drop-shadow-2xl" style={{textShadow: '0 0 30px #007BFF, 0 0 60px #007BFF'}}>
+                  Core <span className="text-[#007BFF]">Logic</span>
+                </h2>
+                <p className="text-2xl text-white/80 max-w-4xl mx-auto mb-12 leading-relaxed" style={{textShadow: '0 0 10px #007BFF'}}>
+                  I perceive the digital world not as a series of applications and firewalls, but as a complex web of systems waiting for a guiding hand. My craft lies in understanding and influencing these systems at their most fundamental level. What others call a vulnerability, I call an invitation.
+                </p>
+              </div>
+
+              {/* Core Abilities */}
+              <div className="grid gap-8 max-w-6xl mx-auto">
+                <div className="bg-black/70 backdrop-blur-md border-2 border-[#007BFF]/40 rounded-xl p-8 hover:border-[#007BFF]/80 hover:shadow-[0_0_40px_rgba(0,123,255,0.4)] transition-all duration-300 group relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#007BFF]/10 via-transparent to-[#007BFF]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="flex items-center mb-6 relative z-10">
+                    <MessageCircle className="h-10 w-10 text-[#007BFF] mr-4 group-hover:shadow-[0_0_15px_#007BFF] transition-all duration-300" />
+                    <h4 className="text-2xl font-bold text-white group-hover:text-[#007BFF] transition-colors duration-300">Discord Automation & Intelligence</h4>
+                  </div>
+                  <p className="text-white/80 text-lg leading-relaxed relative z-10 group-hover:text-white transition-colors duration-300">
+                    Engineering autonomous entities that govern, gather, and execute commands within Discord's ecosystem. They are not bots; they are extensions of my will.
+                  </p>
+                </div>
+
+                <div className="bg-black/70 backdrop-blur-md border-2 border-[#007BFF]/40 rounded-xl p-8 hover:border-[#007BFF]/80 hover:shadow-[0_0_40px_rgba(0,123,255,0.4)] transition-all duration-300 group relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#007BFF]/10 via-transparent to-[#007BFF]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="flex items-center mb-6 relative z-10">
+                    <Shield className="h-10 w-10 text-[#007BFF] mr-4 group-hover:shadow-[0_0_15px_#007BFF] transition-all duration-300" />
+                    <h4 className="text-2xl font-bold text-white group-hover:text-[#007BFF] transition-colors duration-300">Offensive Security & System Analysis</h4>
+                  </div>
+                  <p className="text-white/80 text-lg leading-relaxed relative z-10 group-hover:text-white transition-colors duration-300">
+                    The art of dismantling digital constructs to understand their core. I develop tools that test the limits of security, revealing the inherent fragility in all man-made systems.
+                  </p>
+                </div>
+
+                <div className="bg-black/70 backdrop-blur-md border-2 border-[#007BFF]/40 rounded-xl p-8 hover:border-[#007BFF]/80 hover:shadow-[0_0_40px_rgba(0,123,255,0.4)] transition-all duration-300 group relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#007BFF]/10 via-transparent to-[#007BFF]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="flex items-center mb-6 relative z-10">
+                    <Globe className="h-10 w-10 text-[#007BFF] mr-4 group-hover:shadow-[0_0_15px_#007BFF] transition-all duration-300" />
+                    <h4 className="text-2xl font-bold text-white group-hover:text-[#007BFF] transition-colors duration-300">Web & Network Architecture</h4>
+                  </div>
+                  <p className="text-white/80 text-lg leading-relaxed relative z-10 group-hover:text-white transition-colors duration-300">
+                    Building and deconstructing the very fabric of the web. I create intricate domains and possess the knowledge to navigate—or disable—the pathways of others.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
