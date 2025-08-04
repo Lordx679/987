@@ -94,7 +94,7 @@ function App() {
   const domains = [
     { 
       category: 'Digital Mastery', 
-      items: ['Strategic Gaming', 'System Architecture', 'Network Orchestration', 'Virtual Dominion'], 
+      items: ['Causal Manipulation', 'System Architecture', 'Network Orchestration', 'Conceptual Dominion'], 
       icon: Zap, 
       color: 'from-[#1a1a1a] to-[#2a2a2a]',
       accent: '#007BFF'
