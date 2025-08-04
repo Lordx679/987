@@ -220,13 +220,13 @@ function App() {
       </div>
 
       {/* Divine Command Interface */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-md border-b border-[#007BFF]/30">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-md border-b-2 border-[#007BFF]/50 shadow-[0_0_20px_rgba(0,123,255,0.3)]">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
             <div className="flex items-center space-x-4">
-              <div className="w-12 h-12 bg-gradient-to-r from-[#007BFF] to-[#0056CC] rounded-lg flex items-center justify-center relative shadow-[0_0_20px_#007BFF]">
+              <div className="w-12 h-12 bg-gradient-to-r from-[#007BFF] to-[#0056CC] rounded-lg flex items-center justify-center relative shadow-[0_0_25px_#007BFF] border-2 border-[#007BFF]/40">
                 <Crown className="h-7 w-7 text-white" />
-                <div className="absolute -top-1 -right-1 w-4 h-4 bg-[#007BFF] rounded-full animate-ping shadow-[0_0_10px_#007BFF]"></div>
+                <div className="absolute -top-1 -right-1 w-4 h-4 bg-[#007BFF] rounded-full animate-ping shadow-[0_0_10px_#007BFF] border border-white/30"></div>
                 <div className="absolute inset-0 bg-[#007BFF]/30 rounded-lg blur-lg"></div>
               </div>
               <span className="text-3xl font-black text-white" style={{textShadow: '0 0 15px #007BFF'}}>LORD</span>
@@ -266,8 +266,8 @@ function App() {
               <div className="text-center mb-20">
                 <div className="mb-12">
                   <div className="w-40 h-40 mx-auto mb-12 relative">
-                    <div className="w-full h-full bg-gradient-to-r from-[#007BFF] via-[#0099FF] to-[#007BFF] rounded-full p-1 animate-pulse shadow-[0_0_40px_#007BFF]">
-                      <div className="w-full h-full bg-black rounded-full flex items-center justify-center overflow-hidden relative border-2 border-[#007BFF]/30">
+                    <div className="w-full h-full bg-gradient-to-r from-[#007BFF] via-[#0099FF] to-[#007BFF] rounded-full p-2 animate-pulse shadow-[0_0_50px_#007BFF] border-4 border-[#007BFF]/20">
+                      <div className="w-full h-full bg-black rounded-full flex items-center justify-center overflow-hidden relative border-3 border-[#007BFF]/60">
                         {/* Avatar Image */}
                         {!avatarError ? (
                           <img 
@@ -320,7 +320,7 @@ function App() {
                 </div>
 
                 {/* Divine Manifesto */}
-                <div className="bg-black/60 backdrop-blur-md border border-[#007BFF]/30 rounded-lg p-10 mb-12 shadow-[0_0_40px_rgba(0,123,255,0.2)] relative overflow-hidden">
+                <div className="bg-black/70 backdrop-blur-md border-2 border-[#007BFF]/50 rounded-xl p-10 mb-12 shadow-[0_0_50px_rgba(0,123,255,0.3)] relative overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-br from-[#007BFF]/5 via-transparent to-[#007BFF]/5"></div>
                   <div className="relative z-10">
                     <h3 className="text-3xl font-bold text-[#007BFF] mb-8 flex items-center justify-center" style={{textShadow: '0 0 15px #007BFF'}}>
@@ -354,7 +354,7 @@ function App() {
 
               <div className="grid md:grid-cols-3 gap-8">
                 {domains.map((domain, index) => (
-                  <div key={index} className="bg-black/60 backdrop-blur-md border border-[#007BFF]/30 rounded-lg p-8 hover:border-[#007BFF]/60 hover:shadow-[0_0_30px_rgba(0,123,255,0.3)] transition-all duration-300 group relative overflow-hidden">
+                  <div key={index} className="bg-black/70 backdrop-blur-md border-2 border-[#007BFF]/40 rounded-xl p-8 hover:border-[#007BFF]/80 hover:shadow-[0_0_40px_rgba(0,123,255,0.4)] transition-all duration-300 group relative overflow-hidden">
                     {/* Divine Aura */}
                     <div className="absolute inset-0 bg-gradient-to-br from-[#007BFF]/10 via-transparent to-[#007BFF]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     <div className="flex items-center mb-6 relative z-10">
@@ -412,7 +412,7 @@ function App() {
                     href={method.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-black/60 backdrop-blur-md border border-[#007BFF]/30 rounded-lg p-8 hover:border-[#007BFF]/60 transition-all duration-300 shadow-[0_0_30px_rgba(0,123,255,0.2)] group hover:scale-105 block relative overflow-hidden"
+                    className="bg-black/70 backdrop-blur-md border-2 border-[#007BFF]/40 rounded-xl p-8 hover:border-[#007BFF]/80 transition-all duration-300 shadow-[0_0_40px_rgba(0,123,255,0.3)] group hover:scale-105 block relative overflow-hidden"
                   >
                     <div className="absolute inset-0 bg-gradient-to-br from-[#007BFF]/10 via-transparent to-[#007BFF]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     <div className="text-center relative z-10">
@@ -440,7 +440,7 @@ function App() {
                       href={social.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`w-16 h-16 bg-gradient-to-r from-[#007BFF] to-[#0056CC] rounded-full flex items-center justify-center transition-all duration-300 hover:scale-125 hover:shadow-[0_0_30px_#007BFF] group border-2 border-[#007BFF]/30 hover:border-[#007BFF] relative ${social.color}`}
+                      className={`w-16 h-16 bg-gradient-to-r from-[#007BFF] to-[#0056CC] rounded-full flex items-center justify-center transition-all duration-300 hover:scale-125 hover:shadow-[0_0_35px_#007BFF] group border-3 border-[#007BFF]/50 hover:border-[#007BFF] relative ${social.color}`}
                       title={social.description}
                     >
                       <social.icon className="h-8 w-8 text-white group-hover:text-black transition-colors duration-300 relative z-10" />
