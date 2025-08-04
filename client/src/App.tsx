@@ -7,6 +7,10 @@ function App() {
   const [activeSection, setActiveSection] = useState('welcome');
   const [showWelcome, setShowWelcome] = useState(true);
   const [avatarError, setAvatarError] = useState(false);
+  const [welcomeStep, setWelcomeStep] = useState(0);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isIdle, setIsIdle] = useState(false);
+  const [idleMessage, setIdleMessage] = useState('');
   
   // Fetch Discord avatar dynamically
   const { avatar, loading: avatarLoading } = useDiscordAvatar();
@@ -17,15 +21,52 @@ function App() {
       setCurrentTime(new Date());
     }, 1000);
 
-    // Auto transition from welcome screen after 4 seconds
-    const welcomeTimer = setTimeout(() => {
-      setShowWelcome(false);
-      setActiveSection('about');
-    }, 4000);
+    // Sequential welcome animation
+    const welcomeTimers = [
+      setTimeout(() => setWelcomeStep(1), 500), // Crown appears
+      setTimeout(() => setWelcomeStep(2), 1500), // "I AM" appears
+      setTimeout(() => setWelcomeStep(3), 2500), // "LORD" flashes
+      setTimeout(() => setWelcomeStep(4), 3500), // "Architect" appears
+      setTimeout(() => setWelcomeStep(5), 4500), // Loading text appears
+      setTimeout(() => {
+        setShowWelcome(false);
+        setActiveSection('about');
+      }, 6000)
+    ];
 
     return () => {
       clearInterval(timer);
-      clearTimeout(welcomeTimer);
+      welcomeTimers.forEach(clearTimeout);
+    };
+  }, []);
+
+  // Mouse tracking for avatar gaze and idle detection
+  useEffect(() => {
+    let idleTimer: NodeJS.Timeout;
+    
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+      setIsIdle(false);
+      setIdleMessage('');
+      
+      clearTimeout(idleTimer);
+      idleTimer = setTimeout(() => {
+        setIsIdle(true);
+        const messages = [
+          "Observing...",
+          "Contemplating the next move?",
+          "Everything is proceeding as foreseen.",
+          "The plan continues...",
+          "Your presence has been noted."
+        ];
+        setIdleMessage(messages[Math.floor(Math.random() * messages.length)]);
+      }, 15000);
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      clearTimeout(idleTimer);
     };
   }, []);
 
@@ -208,8 +249,42 @@ function App() {
     );
   }
 
+  // Calculate avatar gaze direction
+  const calculateAvatarRotation = () => {
+    if (typeof window === 'undefined') return { x: 0, y: 0 };
+    
+    const centerX = window.innerWidth / 2;
+    const centerY = window.innerHeight / 2;
+    const deltaX = mousePosition.x - centerX;
+    const deltaY = mousePosition.y - centerY;
+    
+    // Limit rotation to subtle movement
+    const rotateX = Math.max(-3, Math.min(3, deltaY / 150));
+    const rotateY = Math.max(-3, Math.min(3, deltaX / 150));
+    
+    return { x: rotateX, y: rotateY };
+  };
+
+  const avatarRotation = calculateAvatarRotation();
+
   return (
     <div className="min-h-screen bg-black text-white relative overflow-hidden">
+      {/* Custom Cursor */}
+      <div 
+        className={`custom-cursor ${isIdle ? 'idle' : ''}`}
+        style={{
+          left: mousePosition.x - 6,
+          top: mousePosition.y - 6,
+        }}
+      />
+      
+      {/* Idle Message */}
+      {isIdle && idleMessage && (
+        <div className="idle-message">
+          {idleMessage}
+        </div>
+      )}
+
       {/* Divine Realm Background */}
       <div className="fixed inset-0">
         <div className="absolute inset-0 bg-black"></div>
