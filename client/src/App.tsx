@@ -341,13 +341,13 @@ function App() {
                   </div>
                 </div>
 
-                {/* Digital Sovereignty */}
+                {/* Core Logic */}
                 <div className="bg-black/70 backdrop-blur-md border-2 border-[#007BFF]/50 rounded-xl p-10 mb-12 shadow-[0_0_50px_rgba(0,123,255,0.3)] relative overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-br from-[#007BFF]/5 via-transparent to-[#007BFF]/5"></div>
                   <div className="relative z-10">
                     <h3 className="text-3xl font-bold text-[#007BFF] mb-8 flex items-center justify-center" style={{textShadow: '0 0 15px #007BFF'}}>
-                      <Crown className="h-8 w-8 mr-4 text-[#007BFF]" />
-                      Digital Sovereignty
+                      <Zap className="h-8 w-8 mr-4 text-[#007BFF]" />
+                      Core Logic
                     </h3>
                     <div className="text-lg text-white/90 leading-relaxed mb-8 max-w-4xl mx-auto">
                       <p className="italic text-center" style={{textShadow: '0 0 8px #007BFF'}}>

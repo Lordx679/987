@@ -34,7 +34,7 @@ A powerful personal portfolio website for LORDX679, transformed with an Aizen-in
   - Changed "Virtual Dominion" → "Conceptual Dominion"
   - Maintained "System Architecture" and "Network Orchestration"
 - ✅ Updated Interface section to "The Veiled Nexus" with philosophical contact descriptions
-- ✅ Added "Digital Sovereignty" section with professional skill descriptions:
+- ✅ Added "Core Logic" section with professional skill descriptions:
   - "Discord Automation & Intelligence" (replacing bot development)
   - "Offensive Security & System Analysis" (replacing hacking tools)
   - "Web & Network Architecture" (replacing website development)
