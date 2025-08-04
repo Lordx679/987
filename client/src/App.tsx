@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { MessageCircle, Instagram, Crown, User, Mail, ExternalLink, MapPin, Calendar, Clock, Globe, Star, Heart, Gamepad2, Eye, Zap, Shield } from 'lucide-react';
+import { MessageCircle, Instagram, Crown, User, Mail, ExternalLink, MapPin, Calendar, Clock, Globe, Star, Heart, Gamepad2, Eye, Zap } from 'lucide-react';
 import { useDiscordAvatar } from './hooks/useUserData';
 
 function App() {
@@ -7,15 +7,6 @@ function App() {
   const [activeSection, setActiveSection] = useState('welcome');
   const [showWelcome, setShowWelcome] = useState(true);
   const [avatarError, setAvatarError] = useState(false);
-  const [welcomeStep, setWelcomeStep] = useState(0);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [isIdle, setIsIdle] = useState(false);
-  const [idleMessage, setIdleMessage] = useState('');
-  const [isShattening, setIsShattening] = useState(false);
-  const [shatterPoint, setShatterPoint] = useState({ x: 50, y: 50 });
-  const [showCosmic, setShowCosmic] = useState(false);
-  const [visitTime, setVisitTime] = useState(0);
-  const [cosmicTriggered, setCosmicTriggered] = useState(false);
   
   // Fetch Discord avatar dynamically
   const { avatar, loading: avatarLoading } = useDiscordAvatar();
@@ -26,106 +17,17 @@ function App() {
       setCurrentTime(new Date());
     }, 1000);
 
-    // Sequential welcome animation
-    const welcomeTimers = [
-      setTimeout(() => setWelcomeStep(1), 500), // Crown appears
-      setTimeout(() => setWelcomeStep(2), 1500), // "I AM" appears
-      setTimeout(() => setWelcomeStep(3), 2500), // "LORD" flashes
-      setTimeout(() => setWelcomeStep(4), 3500), // "Architect" appears
-      setTimeout(() => setWelcomeStep(5), 4500), // Loading text appears
-      setTimeout(() => {
-        setShowWelcome(false);
-        setActiveSection('about');
-      }, 6000)
-    ];
+    // Auto transition from welcome screen after 4 seconds
+    const welcomeTimer = setTimeout(() => {
+      setShowWelcome(false);
+      setActiveSection('about');
+    }, 4000);
 
     return () => {
       clearInterval(timer);
-      welcomeTimers.forEach(clearTimeout);
+      clearTimeout(welcomeTimer);
     };
   }, []);
-
-  // Mouse tracking for avatar gaze and idle detection
-  useEffect(() => {
-    let idleTimer: NodeJS.Timeout;
-    let visitTimer: NodeJS.Timeout;
-    
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-      setIsIdle(false);
-      setIdleMessage('');
-      
-      clearTimeout(idleTimer);
-      idleTimer = setTimeout(() => {
-        setIsIdle(true);
-        const messages = [
-          "Observing...",
-          "Contemplating the next move?",
-          "Everything is proceeding as foreseen.",
-          "The plan continues...",
-          "Your presence has been noted."
-        ];
-        setIdleMessage(messages[Math.floor(Math.random() * messages.length)]);
-      }, 15000);
-    };
-
-    // Visit time tracking for cosmic event
-    if (!showWelcome && !cosmicTriggered) {
-      visitTimer = setTimeout(() => {
-        triggerCosmicEvent();
-      }, 60000); // 60 seconds
-    }
-
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      clearTimeout(idleTimer);
-      clearTimeout(visitTimer);
-    };
-  }, [showWelcome, cosmicTriggered]);
-
-  // Random text glitch effect
-  useEffect(() => {
-    const glitchInterval = setInterval(() => {
-      if (Math.random() < 0.1) { // 10% chance every interval
-        const textElements = document.querySelectorAll('p, h1, h2, h3, h4');
-        if (textElements.length > 0) {
-          const randomElement = textElements[Math.floor(Math.random() * textElements.length)];
-          randomElement.classList.add('glitch-text');
-          setTimeout(() => {
-            randomElement.classList.remove('glitch-text');
-          }, 300);
-        }
-      }
-    }, 5000); // Check every 5 seconds
-
-    return () => clearInterval(glitchInterval);
-  }, []);
-
-  const triggerShatterEffect = (e: React.MouseEvent) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width) * 100;
-    const y = ((e.clientY - rect.top) / rect.height) * 100;
-    
-    setShatterPoint({ x, y });
-    setIsShattening(true);
-    
-    setTimeout(() => {
-      setActiveSection('about');
-      setIsShattening(false);
-    }, 1500);
-  };
-
-  const triggerCosmicEvent = () => {
-    if (!cosmicTriggered) {
-      setShowCosmic(true);
-      setCosmicTriggered(true);
-      
-      setTimeout(() => {
-        setShowCosmic(false);
-      }, 3000);
-    }
-  };
 
   const socialLinks = [
     { 
@@ -306,76 +208,8 @@ function App() {
     );
   }
 
-  // Calculate avatar gaze direction
-  const calculateAvatarRotation = () => {
-    if (typeof window === 'undefined') return { x: 0, y: 0 };
-    
-    const centerX = window.innerWidth / 2;
-    const centerY = window.innerHeight / 2;
-    const deltaX = mousePosition.x - centerX;
-    const deltaY = mousePosition.y - centerY;
-    
-    // Limit rotation to subtle movement
-    const rotateX = Math.max(-3, Math.min(3, deltaY / 150));
-    const rotateY = Math.max(-3, Math.min(3, deltaX / 150));
-    
-    return { x: rotateX, y: rotateY };
-  };
-
-  const avatarRotation = calculateAvatarRotation();
-
   return (
     <div className="min-h-screen bg-black text-white relative overflow-hidden">
-      {/* Shatter Effect Overlay */}
-      {isShattening && (
-        <>
-          <div 
-            className="shatter-overlay active"
-            style={{
-              '--click-x': `${shatterPoint.x}%`,
-              '--click-y': `${shatterPoint.y}%`
-            } as any}
-          />
-          {[...Array(8)].map((_, i) => (
-            <div
-              key={i}
-              className="crack-line active"
-              style={{
-                top: `${shatterPoint.y}%`,
-                left: `${shatterPoint.x}%`,
-                width: '2px',
-                height: `${200 + Math.random() * 300}px`,
-                transform: `rotate(${i * 45}deg)`,
-                animationDelay: `${i * 0.1}s`
-              }}
-            />
-          ))}
-        </>
-      )}
-
-      {/* Cosmic Event Overlay */}
-      {showCosmic && (
-        <div className="cosmic-overlay active">
-          <div className="cosmic-scene" />
-        </div>
-      )}
-
-      {/* Custom Cursor */}
-      <div 
-        className={`custom-cursor ${isIdle ? 'idle' : ''}`}
-        style={{
-          left: mousePosition.x - 6,
-          top: mousePosition.y - 6,
-        }}
-      />
-      
-      {/* Idle Message */}
-      {isIdle && idleMessage && (
-        <div className="idle-message">
-          {idleMessage}
-        </div>
-      )}
-
       {/* Divine Realm Background */}
       <div className="fixed inset-0">
         <div className="absolute inset-0 bg-black"></div>
@@ -400,7 +234,6 @@ function App() {
             <div className="flex items-center space-x-8">
               {[
                 { key: 'about', label: 'Domain' },
-                { key: 'core', label: 'Core Logic' },
                 { key: 'connect', label: 'Interface' }
               ].map((section) => (
                 <button
@@ -508,16 +341,55 @@ function App() {
                   </div>
                 </div>
 
-
+                {/* Core Logic */}
+                <div className="bg-black/70 backdrop-blur-md border-2 border-[#007BFF]/50 rounded-xl p-10 mb-12 shadow-[0_0_50px_rgba(0,123,255,0.3)] relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#007BFF]/5 via-transparent to-[#007BFF]/5"></div>
+                  <div className="relative z-10">
+                    <h3 className="text-3xl font-bold text-[#007BFF] mb-8 flex items-center justify-center" style={{textShadow: '0 0 15px #007BFF'}}>
+                      <Zap className="h-8 w-8 mr-4 text-[#007BFF]" />
+                      Core Logic
+                    </h3>
+                    <div className="text-lg text-white/90 leading-relaxed mb-8 max-w-4xl mx-auto">
+                      <p className="italic text-center" style={{textShadow: '0 0 8px #007BFF'}}>
+                        I perceive the digital world not as a series of applications and firewalls, but as a complex web of systems waiting for a guiding hand. My craft lies in understanding and influencing these systems at their most fundamental level. What others call a vulnerability, I call an invitation.
+                      </p>
+                    </div>
+                    <div className="grid gap-6 max-w-4xl mx-auto">
+                      <div className="border-l-4 border-[#007BFF] pl-6 bg-black/30 rounded-r-lg p-4">
+                        <h4 className="text-xl font-bold text-[#007BFF] mb-3" style={{textShadow: '0 0 10px #007BFF'}}>
+                          Discord Automation & Intelligence
+                        </h4>
+                        <p className="text-white/80" style={{textShadow: '0 0 5px #007BFF'}}>
+                          Engineering autonomous entities that govern, gather, and execute commands within Discord's ecosystem. They are not bots; they are extensions of my will.
+                        </p>
+                      </div>
+                      <div className="border-l-4 border-[#007BFF] pl-6 bg-black/30 rounded-r-lg p-4">
+                        <h4 className="text-xl font-bold text-[#007BFF] mb-3" style={{textShadow: '0 0 10px #007BFF'}}>
+                          Offensive Security & System Analysis
+                        </h4>
+                        <p className="text-white/80" style={{textShadow: '0 0 5px #007BFF'}}>
+                          The art of dismantling digital constructs to understand their core. I develop tools that test the limits of security, revealing the inherent fragility in all man-made systems.
+                        </p>
+                      </div>
+                      <div className="border-l-4 border-[#007BFF] pl-6 bg-black/30 rounded-r-lg p-4">
+                        <h4 className="text-xl font-bold text-[#007BFF] mb-3" style={{textShadow: '0 0 10px #007BFF'}}>
+                          Web & Network Architecture
+                        </h4>
+                        <p className="text-white/80" style={{textShadow: '0 0 5px #007BFF'}}>
+                          Building and deconstructing the very fabric of the web. I create intricate domains and possess the knowledge to navigate—or disable—the pathways of others.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
                 <div className="flex flex-wrap justify-center gap-6 mb-16">
                   <button 
-                    onClick={triggerShatterEffect}
-                    className="px-12 py-4 bg-gradient-to-r from-[#007BFF] to-[#0056CC] text-white font-bold text-xl rounded-lg hover:from-[#0056CC] hover:to-[#003d99] transition-all duration-300 shadow-[0_0_25px_#007BFF] hover:shadow-[0_0_35px_#007BFF] transform hover:scale-105 relative overflow-hidden"
+                    onClick={() => setActiveSection('connect')}
+                    className="px-12 py-4 bg-gradient-to-r from-[#007BFF] to-[#0056CC] text-white font-bold text-xl rounded-lg hover:from-[#0056CC] hover:to-[#003d99] transition-all duration-300 shadow-[0_0_25px_#007BFF] hover:shadow-[0_0_35px_#007BFF] transform hover:scale-105"
                     style={{textShadow: '0 0 10px rgba(255,255,255,0.5)'}}
                   >
-                    <span className="relative z-10">Enter My Domain</span>
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform translate-x-[-100%] hover:translate-x-[100%] transition-transform duration-700"></div>
+                    Enter My Domain
                   </button>
                 </div>
               </div>
@@ -541,59 +413,6 @@ function App() {
                     </div>
                   </div>
                 ))}
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* Core Logic Section */}
-        {activeSection === 'core' && (
-          <div className="min-h-screen px-6 py-24">
-            <div className="max-w-7xl mx-auto">
-              {/* Core Logic Header */}
-              <div className="text-center mb-20">
-                <h2 className="text-5xl lg:text-7xl font-black text-white mb-8 drop-shadow-2xl" style={{textShadow: '0 0 30px #007BFF, 0 0 60px #007BFF'}}>
-                  Core <span className="text-[#007BFF]">Logic</span>
-                </h2>
-                <p className="text-2xl text-white/80 max-w-4xl mx-auto mb-12 leading-relaxed" style={{textShadow: '0 0 10px #007BFF'}}>
-                  I perceive the digital world not as a series of applications and firewalls, but as a complex web of systems waiting for a guiding hand. My craft lies in understanding and influencing these systems at their most fundamental level. What others call a vulnerability, I call an invitation.
-                </p>
-              </div>
-
-              {/* Core Abilities */}
-              <div className="grid gap-8 max-w-6xl mx-auto">
-                <div className="bg-black/70 backdrop-blur-md border-2 border-[#007BFF]/40 rounded-xl p-8 hover:border-[#007BFF]/80 hover:shadow-[0_0_40px_rgba(0,123,255,0.4)] transition-all duration-300 group relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#007BFF]/10 via-transparent to-[#007BFF]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div className="flex items-center mb-6 relative z-10">
-                    <MessageCircle className="h-10 w-10 text-[#007BFF] mr-4 group-hover:shadow-[0_0_15px_#007BFF] transition-all duration-300" />
-                    <h4 className="text-2xl font-bold text-white group-hover:text-[#007BFF] transition-colors duration-300">Discord Automation & Intelligence</h4>
-                  </div>
-                  <p className="text-white/80 text-lg leading-relaxed relative z-10 group-hover:text-white transition-colors duration-300">
-                    Engineering autonomous entities that govern, gather, and execute commands within Discord's ecosystem. They are not bots; they are extensions of my will.
-                  </p>
-                </div>
-
-                <div className="bg-black/70 backdrop-blur-md border-2 border-[#007BFF]/40 rounded-xl p-8 hover:border-[#007BFF]/80 hover:shadow-[0_0_40px_rgba(0,123,255,0.4)] transition-all duration-300 group relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#007BFF]/10 via-transparent to-[#007BFF]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div className="flex items-center mb-6 relative z-10">
-                    <Shield className="h-10 w-10 text-[#007BFF] mr-4 group-hover:shadow-[0_0_15px_#007BFF] transition-all duration-300" />
-                    <h4 className="text-2xl font-bold text-white group-hover:text-[#007BFF] transition-colors duration-300">Offensive Security & System Analysis</h4>
-                  </div>
-                  <p className="text-white/80 text-lg leading-relaxed relative z-10 group-hover:text-white transition-colors duration-300">
-                    The art of dismantling digital constructs to understand their core. I develop tools that test the limits of security, revealing the inherent fragility in all man-made systems.
-                  </p>
-                </div>
-
-                <div className="bg-black/70 backdrop-blur-md border-2 border-[#007BFF]/40 rounded-xl p-8 hover:border-[#007BFF]/80 hover:shadow-[0_0_40px_rgba(0,123,255,0.4)] transition-all duration-300 group relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#007BFF]/10 via-transparent to-[#007BFF]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div className="flex items-center mb-6 relative z-10">
-                    <Globe className="h-10 w-10 text-[#007BFF] mr-4 group-hover:shadow-[0_0_15px_#007BFF] transition-all duration-300" />
-                    <h4 className="text-2xl font-bold text-white group-hover:text-[#007BFF] transition-colors duration-300">Web & Network Architecture</h4>
-                  </div>
-                  <p className="text-white/80 text-lg leading-relaxed relative z-10 group-hover:text-white transition-colors duration-300">
-                    Building and deconstructing the very fabric of the web. I create intricate domains and possess the knowledge to navigate—or disable—the pathways of others.
-                  </p>
-                </div>
               </div>
             </div>
           </div>
