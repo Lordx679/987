@@ -11,6 +11,11 @@ function App() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isIdle, setIsIdle] = useState(false);
   const [idleMessage, setIdleMessage] = useState('');
+  const [isShattening, setIsShattening] = useState(false);
+  const [shatterPoint, setShatterPoint] = useState({ x: 50, y: 50 });
+  const [showCosmic, setShowCosmic] = useState(false);
+  const [visitTime, setVisitTime] = useState(0);
+  const [cosmicTriggered, setCosmicTriggered] = useState(false);
   
   // Fetch Discord avatar dynamically
   const { avatar, loading: avatarLoading } = useDiscordAvatar();
@@ -43,6 +48,7 @@ function App() {
   // Mouse tracking for avatar gaze and idle detection
   useEffect(() => {
     let idleTimer: NodeJS.Timeout;
+    let visitTimer: NodeJS.Timeout;
     
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
@@ -63,12 +69,63 @@ function App() {
       }, 15000);
     };
 
+    // Visit time tracking for cosmic event
+    if (!showWelcome && !cosmicTriggered) {
+      visitTimer = setTimeout(() => {
+        triggerCosmicEvent();
+      }, 60000); // 60 seconds
+    }
+
     window.addEventListener('mousemove', handleMouseMove);
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
       clearTimeout(idleTimer);
+      clearTimeout(visitTimer);
     };
+  }, [showWelcome, cosmicTriggered]);
+
+  // Random text glitch effect
+  useEffect(() => {
+    const glitchInterval = setInterval(() => {
+      if (Math.random() < 0.1) { // 10% chance every interval
+        const textElements = document.querySelectorAll('p, h1, h2, h3, h4');
+        if (textElements.length > 0) {
+          const randomElement = textElements[Math.floor(Math.random() * textElements.length)];
+          randomElement.classList.add('glitch-text');
+          setTimeout(() => {
+            randomElement.classList.remove('glitch-text');
+          }, 300);
+        }
+      }
+    }, 5000); // Check every 5 seconds
+
+    return () => clearInterval(glitchInterval);
   }, []);
+
+  const triggerShatterEffect = (e: React.MouseEvent) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    
+    setShatterPoint({ x, y });
+    setIsShattening(true);
+    
+    setTimeout(() => {
+      setActiveSection('about');
+      setIsShattening(false);
+    }, 1500);
+  };
+
+  const triggerCosmicEvent = () => {
+    if (!cosmicTriggered) {
+      setShowCosmic(true);
+      setCosmicTriggered(true);
+      
+      setTimeout(() => {
+        setShowCosmic(false);
+      }, 3000);
+    }
+  };
 
   const socialLinks = [
     { 
@@ -269,6 +326,40 @@ function App() {
 
   return (
     <div className="min-h-screen bg-black text-white relative overflow-hidden">
+      {/* Shatter Effect Overlay */}
+      {isShattening && (
+        <>
+          <div 
+            className="shatter-overlay active"
+            style={{
+              '--click-x': `${shatterPoint.x}%`,
+              '--click-y': `${shatterPoint.y}%`
+            } as any}
+          />
+          {[...Array(8)].map((_, i) => (
+            <div
+              key={i}
+              className="crack-line active"
+              style={{
+                top: `${shatterPoint.y}%`,
+                left: `${shatterPoint.x}%`,
+                width: '2px',
+                height: `${200 + Math.random() * 300}px`,
+                transform: `rotate(${i * 45}deg)`,
+                animationDelay: `${i * 0.1}s`
+              }}
+            />
+          ))}
+        </>
+      )}
+
+      {/* Cosmic Event Overlay */}
+      {showCosmic && (
+        <div className="cosmic-overlay active">
+          <div className="cosmic-scene" />
+        </div>
+      )}
+
       {/* Custom Cursor */}
       <div 
         className={`custom-cursor ${isIdle ? 'idle' : ''}`}
@@ -421,11 +512,12 @@ function App() {
 
                 <div className="flex flex-wrap justify-center gap-6 mb-16">
                   <button 
-                    onClick={() => setActiveSection('connect')}
-                    className="px-12 py-4 bg-gradient-to-r from-[#007BFF] to-[#0056CC] text-white font-bold text-xl rounded-lg hover:from-[#0056CC] hover:to-[#003d99] transition-all duration-300 shadow-[0_0_25px_#007BFF] hover:shadow-[0_0_35px_#007BFF] transform hover:scale-105"
+                    onClick={triggerShatterEffect}
+                    className="px-12 py-4 bg-gradient-to-r from-[#007BFF] to-[#0056CC] text-white font-bold text-xl rounded-lg hover:from-[#0056CC] hover:to-[#003d99] transition-all duration-300 shadow-[0_0_25px_#007BFF] hover:shadow-[0_0_35px_#007BFF] transform hover:scale-105 relative overflow-hidden"
                     style={{textShadow: '0 0 10px rgba(255,255,255,0.5)'}}
                   >
-                    Enter My Domain
+                    <span className="relative z-10">Enter My Domain</span>
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform translate-x-[-100%] hover:translate-x-[100%] transition-transform duration-700"></div>
                   </button>
                 </div>
               </div>
