@@ -59,33 +59,33 @@ function App() {
   const contactMethods = [
     {
       icon: MessageCircle,
-      title: 'Discord',
+      title: 'The Inner Sanctum',
       value: '1c.2',
-      description: 'Direct Communication Channel',
+      description: 'A direct conduit to the core of my design.',
       color: 'from-[#007BFF] to-[#0056CC]',
       url: 'https://discord.com/users/1c.2'
     },
     {
       icon: Instagram,
-      title: 'Instagram',
+      title: 'Illusory Facades',
       value: '@lordx679',
-      description: 'Visual Chronicles',
+      description: 'Observe the carefully crafted reality I present to the world.',
       color: 'from-[#007BFF] to-[#0056CC]',
       url: 'https://www.instagram.com/lordx679'
     },
     {
       icon: Mail,
-      title: 'Email',
+      title: 'The Scribe\'s Sigil',
       value: 'ibraff739@gmail.com',
-      description: 'Formal Correspondence',
+      description: 'For matters requiring a traditional seal of exchange.',
       color: 'from-[#007BFF] to-[#0056CC]',
       url: 'mailto:ibraff739@gmail.com'
     },
     {
       icon: Gamepad2,
-      title: 'Roblox',
+      title: 'The Proving Grounds',
       value: 'aoufabok',
-      description: 'Gaming Dimension',
+      description: 'A dimension where concepts are tested and dominance is forged.',
       color: 'from-[#007BFF] to-[#0056CC]',
       url: 'https://www.roblox.com/users/profile?username=aoufabok'
     }
@@ -101,14 +101,14 @@ function App() {
     },
     { 
       category: 'Social Engineering', 
-      items: ['Community Leadership', 'Content Manifestation', 'Influence Networks', 'Digital Presence'], 
+      items: ['Cultivation of Allegiance', 'Narrative Control', 'Influence Networks', 'Calculated Omnipresence'], 
       icon: Eye, 
       color: 'from-[#1a1a1a] to-[#2a2a2a]',
       accent: '#007BFF'
     },
     { 
       category: 'Cultural Intelligence', 
-      items: ['Strategic Analysis', 'Pattern Recognition', 'Cross-Cultural Navigation', 'Future Anticipation'], 
+      items: ['Strategic Analysis', 'Pattern Recognition', 'Ideological Navigation', 'Precognitive Strategy'], 
       icon: Crown, 
       color: 'from-[#1a1a1a] to-[#2a2a2a]',
       accent: '#007BFF'
@@ -380,25 +380,25 @@ function App() {
         {activeSection === 'connect' && (
           <div className="min-h-screen px-6 py-24">
             <div className="max-w-7xl mx-auto">
-              {/* Divine Header */}
+              {/* The Veiled Nexus Header */}
               <div className="text-center mb-20">
                 <h2 className="text-5xl lg:text-7xl font-black text-white mb-8 drop-shadow-2xl" style={{textShadow: '0 0 30px #007BFF, 0 0 60px #007BFF'}}>
-                  Divine <span className="text-[#007BFF]">Interface</span>
+                  The Veiled <span className="text-[#007BFF]">Nexus</span>
                 </h2>
                 <p className="text-2xl text-white/80 max-w-4xl mx-auto mb-12 leading-relaxed" style={{textShadow: '0 0 10px #007BFF'}}>
-                  Choose your method to witness what lies beyond the conventional. Each channel leads to a different aspect of my domain.
+                  All paths presented here are but threads in a grander design. Choose your point of contact, but know that all threads ultimately serve the same purpose.
                 </p>
                 
-                {/* Omnipresence Status */}
+                {/* Temporal Anchor & State of Being */}
                 <div className="flex items-center justify-center space-x-8 mb-12">
                   <div className="flex items-center space-x-3">
                     <Clock className="h-6 w-6 text-[#007BFF]" />
-                    <span className="text-white/90 text-lg">Italy Nexus: {italyTime}</span>
+                    <span className="text-white/90 text-lg">Temporal Anchor: {italyTime}</span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <div className={`w-4 h-4 rounded-full ${isOnline() ? 'bg-[#007BFF] animate-pulse shadow-[0_0_15px_#007BFF]' : 'bg-white/50 shadow-[0_0_10px_rgba(255,255,255,0.3)]'}`}></div>
                     <span className="text-white/90 text-lg">
-                      {isOnline() ? 'Omnipresent & Observing' : 'Temporarily Beyond Reach'}
+                      {isOnline() ? 'State of Being: Omnipresent & Observing' : 'State of Being: Temporarily Beyond Reach'}
                     </span>
                   </div>
                 </div>
@@ -430,9 +430,9 @@ function App() {
                 ))}
               </div>
 
-              {/* Divine Connection Matrix */}
+              {/* Threaded Convergence Matrix */}
               <div className="text-center">
-                <h3 className="text-3xl font-bold text-white mb-8" style={{textShadow: '0 0 15px #007BFF'}}>Direct Access Protocols</h3>
+                <h3 className="text-3xl font-bold text-white mb-8" style={{textShadow: '0 0 15px #007BFF'}}>Convergence Points</h3>
                 <div className="flex justify-center space-x-8">
                   {socialLinks.map((social, index) => (
                     <a
@@ -449,7 +449,7 @@ function App() {
                   ))}
                 </div>
                 <p className="text-white/70 text-lg mt-6" style={{textShadow: '0 0 8px #007BFF'}}>
-                  Choose your gateway to my domain
+                  All threads lead to the same design
                 </p>
               </div>
             </div>
