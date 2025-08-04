@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { MessageCircle, Instagram, Crown, User, Mail, ExternalLink, MapPin, Calendar, Clock, Globe, Star, Heart, Gamepad2 } from 'lucide-react';
+import { MessageCircle, Instagram, Crown, User, Mail, ExternalLink, MapPin, Calendar, Clock, Globe, Star, Heart, Gamepad2, Eye, Zap } from 'lucide-react';
+import { useDiscordAvatar } from './hooks/useUserData';
 
 function App() {
   const [currentTime, setCurrentTime] = useState(new Date());
@@ -7,8 +8,9 @@ function App() {
   const [showWelcome, setShowWelcome] = useState(true);
   const [avatarError, setAvatarError] = useState(false);
   
-  // Using the uploaded avatar image
-  const avatarUrl = "/e9c4e804b0c546262bd2bc03f593648d.jpg";
+  // Fetch Discord avatar dynamically
+  const { avatar, loading: avatarLoading } = useDiscordAvatar();
+  const avatarUrl = avatar?.avatarUrl || "/e9c4e804b0c546262bd2bc03f593648d.jpg";
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -32,24 +34,24 @@ function App() {
       name: 'Discord', 
       icon: MessageCircle, 
       url: 'https://discord.com/users/1c.2', 
-      color: 'hover:text-[#8B7355]',
-      description: 'Chat with me on Discord',
+      color: 'hover:text-[#007BFF]',
+      description: 'Connect in the Digital Realm',
       username: '1c.2'
     },
     { 
       name: 'Instagram', 
       icon: Instagram, 
       url: 'https://www.instagram.com/lordx679', 
-      color: 'hover:text-[#A0956B]',
-      description: 'Follow my daily life',
+      color: 'hover:text-[#007BFF]',
+      description: 'Witness the Journey',
       username: '@lordx679'
     },
     { 
       name: 'Roblox', 
       icon: Gamepad2, 
       url: 'https://www.roblox.com/users/profile?username=aoufabok', 
-      color: 'hover:text-[#C4B896]',
-      description: 'Play games with me',
+      color: 'hover:text-[#007BFF]',
+      description: 'Enter My Domain',
       username: 'aoufabok'
     },
   ];
@@ -59,57 +61,57 @@ function App() {
       icon: MessageCircle,
       title: 'Discord',
       value: '1c.2',
-      description: 'Chat with me anytime',
-      color: 'from-[#8B7355] to-[#A0956B]',
+      description: 'Direct Communication Channel',
+      color: 'from-[#007BFF] to-[#0056CC]',
       url: 'https://discord.com/users/1c.2'
     },
     {
       icon: Instagram,
       title: 'Instagram',
       value: '@lordx679',
-      description: 'Follow my daily adventures',
-      color: 'from-[#A0956B] to-[#C4B896]',
+      description: 'Visual Chronicles',
+      color: 'from-[#007BFF] to-[#0056CC]',
       url: 'https://www.instagram.com/lordx679'
     },
     {
       icon: Mail,
       title: 'Email',
       value: 'ibraff739@gmail.com',
-      description: 'Send me a message',
-      color: 'from-[#C4B896] to-[#D4C5A9]',
+      description: 'Formal Correspondence',
+      color: 'from-[#007BFF] to-[#0056CC]',
       url: 'mailto:ibraff739@gmail.com'
     },
     {
       icon: Gamepad2,
       title: 'Roblox',
       value: 'aoufabok',
-      description: 'Let\'s play together',
-      color: 'from-[#8B7355] to-[#C4B896]',
+      description: 'Gaming Dimension',
+      color: 'from-[#007BFF] to-[#0056CC]',
       url: 'https://www.roblox.com/users/profile?username=aoufabok'
     }
   ];
 
-  const interests = [
+  const domains = [
     { 
-      category: 'Gaming', 
-      items: ['Roblox', 'Mobile Games', 'Strategy Games', 'Adventure Games', 'Multiplayer'], 
-      icon: Gamepad2, 
-      color: 'from-[#F5F5F5] to-[#E8E8E8]',
-      accent: '#8B7355'
+      category: 'Digital Mastery', 
+      items: ['Strategic Gaming', 'System Architecture', 'Network Orchestration', 'Virtual Dominion'], 
+      icon: Zap, 
+      color: 'from-[#1a1a1a] to-[#2a2a2a]',
+      accent: '#007BFF'
     },
     { 
-      category: 'Social Media', 
-      items: ['Instagram Stories', 'Discord Communities', 'Content Creation', 'Photography', 'Memes'], 
-      icon: Instagram, 
-      color: 'from-[#F5F5F5] to-[#E8E8E8]',
-      accent: '#A0956B'
+      category: 'Social Engineering', 
+      items: ['Community Leadership', 'Content Manifestation', 'Influence Networks', 'Digital Presence'], 
+      icon: Eye, 
+      color: 'from-[#1a1a1a] to-[#2a2a2a]',
+      accent: '#007BFF'
     },
     { 
-      category: 'Hobbies', 
-      items: ['Music', 'Movies', 'Anime', 'Travel', 'Food'], 
-      icon: Heart, 
-      color: 'from-[#F5F5F5] to-[#E8E8E8]',
-      accent: '#C4B896'
+      category: 'Cultural Intelligence', 
+      items: ['Strategic Analysis', 'Pattern Recognition', 'Cross-Cultural Navigation', 'Future Anticipation'], 
+      icon: Crown, 
+      color: 'from-[#1a1a1a] to-[#2a2a2a]',
+      accent: '#007BFF'
     },
   ];
 
@@ -136,109 +138,117 @@ function App() {
     return italyHour >= 8 && italyHour < 23; // Monday-Friday
   };
 
-  // Welcome Screen
+  // Welcome Screen - Aizen LORD Style
   if (showWelcome) {
     return (
-      <div className="min-h-screen bg-[#D4C5A9] flex items-center justify-center relative overflow-hidden">
-        {/* Epic Background Effects */}
+      <div className="min-h-screen bg-black flex items-center justify-center relative overflow-hidden">
+        {/* Divine Background Effects */}
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#D4C5A9] via-[#F5F5F5] to-[#D4C5A9]"></div>
+          <div className="absolute inset-0 bg-black"></div>
           
-          {/* Floating Particles */}
-          <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-[#8B7355] rounded-full animate-ping opacity-70"></div>
-          <div className="absolute top-3/4 right-1/3 w-1 h-1 bg-[#A0956B] rounded-full animate-pulse opacity-60"></div>
-          <div className="absolute bottom-1/3 left-1/2 w-3 h-3 bg-[#C4B896] rounded-full animate-bounce opacity-50"></div>
-          <div className="absolute top-1/2 right-1/4 w-1 h-1 bg-[#8B7355] rounded-full animate-ping opacity-80"></div>
+          {/* Divine Energy Particles */}
+          <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-[#007BFF] rounded-full animate-ping opacity-70 shadow-[0_0_10px_#007BFF]"></div>
+          <div className="absolute top-3/4 right-1/3 w-1 h-1 bg-[#007BFF] rounded-full animate-pulse opacity-60 shadow-[0_0_8px_#007BFF]"></div>
+          <div className="absolute bottom-1/3 left-1/2 w-3 h-3 bg-[#007BFF] rounded-full animate-bounce opacity-50 shadow-[0_0_15px_#007BFF]"></div>
+          <div className="absolute top-1/2 right-1/4 w-1 h-1 bg-[#007BFF] rounded-full animate-ping opacity-80 shadow-[0_0_6px_#007BFF]"></div>
           
-          {/* Epic Glow Effects */}
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[#8B7355]/10 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute top-1/3 right-1/4 w-64 h-64 bg-[#A0956B]/8 rounded-full blur-2xl animate-pulse delay-1000"></div>
-          <div className="absolute bottom-1/4 left-1/3 w-48 h-48 bg-[#C4B896]/5 rounded-full blur-xl animate-pulse delay-2000"></div>
+          {/* Divine Aura Effects */}
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[#007BFF]/20 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute top-1/3 right-1/4 w-64 h-64 bg-[#007BFF]/15 rounded-full blur-2xl animate-pulse delay-1000"></div>
+          <div className="absolute bottom-1/4 left-1/3 w-48 h-48 bg-[#007BFF]/10 rounded-full blur-xl animate-pulse delay-2000"></div>
         </div>
 
-        {/* Welcome Content */}
+        {/* Divine Presence Content */}
         <div className="relative z-10 text-center">
-          {/* Legendary Crown Icon */}
+          {/* Divine Crown Icon */}
           <div className="mb-8 relative">
-            <div className="w-24 h-24 mx-auto mb-6 relative animate-bounce">
-              <Crown className="w-full h-full text-[#8B7355] drop-shadow-2xl animate-pulse" />
-              <div className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-r from-[#A0956B] to-[#8B7355] rounded-full animate-ping"></div>
-              <div className="absolute -bottom-2 -left-2 w-4 h-4 bg-gradient-to-r from-[#C4B896] to-[#A0956B] rounded-full animate-pulse delay-500"></div>
+            <div className="w-32 h-32 mx-auto mb-6 relative">
+              <Crown className="w-full h-full text-[#007BFF] drop-shadow-2xl animate-pulse shadow-[0_0_30px_#007BFF]" />
+              <div className="absolute -top-2 -right-2 w-8 h-8 bg-[#007BFF] rounded-full animate-ping shadow-[0_0_20px_#007BFF]"></div>
+              <div className="absolute -bottom-2 -left-2 w-6 h-6 bg-[#007BFF] rounded-full animate-pulse delay-500 shadow-[0_0_15px_#007BFF]"></div>
+              <div className="absolute inset-0 bg-[#007BFF]/20 rounded-full blur-xl animate-pulse"></div>
             </div>
           </div>
 
-          {/* Epic Welcome Text */}
-          <div className="space-y-6">
-            <h1 className="text-6xl lg:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#8B7355] via-[#A0956B] to-[#8B7355] animate-pulse drop-shadow-2xl">
-              WELCOME
+          {/* Divine Proclamation */}
+          <div className="space-y-8">
+            <h1 className="text-7xl lg:text-9xl font-black text-white drop-shadow-2xl animate-pulse" style={{textShadow: '0 0 20px #007BFF, 0 0 40px #007BFF, 0 0 60px #007BFF'}}>
+              I AM
             </h1>
-            <div className="flex items-center justify-center space-x-4 text-4xl lg:text-6xl font-bold">
-              <span className="text-[#C4B896] animate-pulse delay-300">TO</span>
+            <div className="flex items-center justify-center space-x-6 text-5xl lg:text-8xl font-black">
               <div className="relative">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#A0956B] via-[#8B7355] to-[#A0956B] animate-pulse delay-500">
+                <span className="text-[#007BFF] animate-pulse delay-500" style={{textShadow: '0 0 30px #007BFF, 0 0 60px #007BFF'}}>
                   LORD
                 </span>
-                <div className="absolute -top-1 -right-1 w-3 h-3 bg-[#8B7355] rounded-full animate-ping"></div>
+                <div className="absolute -top-2 -right-2 w-4 h-4 bg-[#007BFF] rounded-full animate-ping shadow-[0_0_15px_#007BFF]"></div>
               </div>
             </div>
-            <h2 className="text-5xl lg:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#C4B896] via-[#8B7355] to-[#C4B896] animate-pulse delay-700 drop-shadow-xl">
-              WORLD
+            <h2 className="text-4xl lg:text-6xl font-bold text-white/90 animate-pulse delay-700" style={{textShadow: '0 0 15px #007BFF'}}>
+              Architect of the Future
             </h2>
           </div>
 
-          {/* Loading Animation */}
-          <div className="mt-12">
-            <div className="w-64 h-1 bg-[#C4B896] rounded-full mx-auto overflow-hidden">
-              <div className="h-full bg-gradient-to-r from-[#8B7355] via-[#A0956B] to-[#C4B896] rounded-full animate-pulse transform origin-left scale-x-0 animate-[scaleX_4s_ease-in-out_forwards]"></div>
+          {/* Divine Loading Animation */}
+          <div className="mt-16">
+            <div className="w-80 h-1 bg-gray-800 rounded-full mx-auto overflow-hidden">
+              <div className="h-full bg-gradient-to-r from-[#007BFF] via-[#0099FF] to-[#007BFF] rounded-full animate-pulse transform origin-left scale-x-0 animate-[scaleX_4s_ease-in-out_forwards] shadow-[0_0_10px_#007BFF]"></div>
             </div>
-            <p className="text-[#8B7355] text-sm mt-4 animate-pulse delay-1000">Entering my personal space...</p>
+            <p className="text-white/70 text-lg mt-6 animate-pulse delay-1000" style={{textShadow: '0 0 10px #007BFF'}}>
+              Transcending the Conventional...
+            </p>
           </div>
         </div>
 
-        {/* Epic Border Effects */}
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#8B7355] to-transparent animate-pulse"></div>
-        <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#A0956B] to-transparent animate-pulse delay-500"></div>
-        <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-transparent via-[#C4B896] to-transparent animate-pulse delay-1000"></div>
-        <div className="absolute top-0 right-0 w-1 h-full bg-gradient-to-b from-transparent via-[#8B7355] to-transparent animate-pulse delay-1500"></div>
+        {/* Divine Border Effects */}
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#007BFF] to-transparent animate-pulse shadow-[0_0_10px_#007BFF]"></div>
+        <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#007BFF] to-transparent animate-pulse delay-500 shadow-[0_0_10px_#007BFF]"></div>
+        <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-transparent via-[#007BFF] to-transparent animate-pulse delay-1000 shadow-[0_0_10px_#007BFF]"></div>
+        <div className="absolute top-0 right-0 w-1 h-full bg-gradient-to-b from-transparent via-[#007BFF] to-transparent animate-pulse delay-1500 shadow-[0_0_10px_#007BFF]"></div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-[#F5F5F5] text-[#8B7355] relative overflow-hidden">
-      {/* Epic Background */}
+    <div className="min-h-screen bg-black text-white relative overflow-hidden">
+      {/* Divine Realm Background */}
       <div className="fixed inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#F5F5F5] via-[#D4C5A9] to-[#F5F5F5]"></div>
-        <div className="absolute top-1/2 right-1/4 w-96 h-96 bg-[#8B7355]/5 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 left-1/3 w-64 h-64 bg-[#A0956B]/8 rounded-full blur-2xl"></div>
-        <div className="absolute top-1/4 left-1/2 w-32 h-32 bg-[#C4B896]/5 rounded-full blur-xl animate-bounce"></div>
+        <div className="absolute inset-0 bg-black"></div>
+        <div className="absolute top-1/2 right-1/4 w-96 h-96 bg-[#007BFF]/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/4 left-1/3 w-64 h-64 bg-[#007BFF]/15 rounded-full blur-2xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/4 left-1/2 w-32 h-32 bg-[#007BFF]/8 rounded-full blur-xl animate-pulse delay-2000"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#001122]/50 to-transparent"></div>
       </div>
 
-      {/* Legendary Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#F5F5F5]/95 backdrop-blur-md border-b border-[#D4C5A9]">
+      {/* Divine Command Interface */}
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-md border-b border-[#007BFF]/30">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
+          <div className="flex items-center justify-between h-20">
             <div className="flex items-center space-x-4">
-              <div className="w-10 h-10 bg-gradient-to-r from-[#8B7355] to-[#A0956B] rounded-lg flex items-center justify-center relative">
-                <Crown className="h-6 w-6 text-[#F5F5F5]" />
-                <div className="absolute -top-1 -right-1 w-3 h-3 bg-[#C4B896] rounded-full animate-ping"></div>
+              <div className="w-12 h-12 bg-gradient-to-r from-[#007BFF] to-[#0056CC] rounded-lg flex items-center justify-center relative shadow-[0_0_20px_#007BFF]">
+                <Crown className="h-7 w-7 text-white" />
+                <div className="absolute -top-1 -right-1 w-4 h-4 bg-[#007BFF] rounded-full animate-ping shadow-[0_0_10px_#007BFF]"></div>
+                <div className="absolute inset-0 bg-[#007BFF]/30 rounded-lg blur-lg"></div>
               </div>
-              <span className="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#8B7355] to-[#A0956B]">LORDX679</span>
+              <span className="text-3xl font-black text-white" style={{textShadow: '0 0 15px #007BFF'}}>LORD</span>
             </div>
             <div className="flex items-center space-x-8">
-              {['about', 'connect'].map((section) => (
+              {[
+                { key: 'about', label: 'Domain' },
+                { key: 'connect', label: 'Interface' }
+              ].map((section) => (
                 <button
-                  key={section}
-                  onClick={() => setActiveSection(section)}
-                  className={`text-sm font-bold transition-all duration-300 capitalize relative ${
-                    activeSection === section 
-                      ? 'text-[#8B7355] border-b-2 border-[#A0956B]' 
-                      : 'text-[#C4B896] hover:text-[#8B7355]'
+                  key={section.key}
+                  onClick={() => setActiveSection(section.key)}
+                  className={`text-lg font-bold transition-all duration-300 relative ${
+                    activeSection === section.key 
+                      ? 'text-[#007BFF] border-b-2 border-[#007BFF]' 
+                      : 'text-white/70 hover:text-[#007BFF]'
                   }`}
+                  style={activeSection === section.key ? {textShadow: '0 0 10px #007BFF'} : {}}
                 >
-                  {section}
-                  {activeSection === section && (
-                    <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-[#A0956B] rounded-full animate-ping"></div>
+                  {section.label}
+                  {activeSection === section.key && (
+                    <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-[#007BFF] rounded-full animate-ping shadow-[0_0_8px_#007BFF]"></div>
                   )}
                 </button>
               ))}
@@ -249,20 +259,20 @@ function App() {
 
       {/* Main Content */}
       <main className="pt-16 relative z-10">
-        {/* About Section */}
+        {/* Domain Section - LORD's Realm */}
         {activeSection === 'about' && (
-          <div className="min-h-screen flex items-center justify-center px-6 py-20">
+          <div className="min-h-screen flex items-center justify-center px-6 py-24">
             <div className="max-w-6xl mx-auto">
-              <div className="text-center mb-16">
-                <div className="mb-8">
-                  <div className="w-32 h-32 mx-auto mb-8 relative">
-                    <div className="w-full h-full bg-gradient-to-r from-[#8B7355] via-[#A0956B] to-[#C4B896] rounded-full p-1 animate-pulse">
-                      <div className="w-full h-full bg-[#F5F5F5] rounded-full flex items-center justify-center overflow-hidden relative">
+              <div className="text-center mb-20">
+                <div className="mb-12">
+                  <div className="w-40 h-40 mx-auto mb-12 relative">
+                    <div className="w-full h-full bg-gradient-to-r from-[#007BFF] via-[#0099FF] to-[#007BFF] rounded-full p-1 animate-pulse shadow-[0_0_40px_#007BFF]">
+                      <div className="w-full h-full bg-black rounded-full flex items-center justify-center overflow-hidden relative border-2 border-[#007BFF]/30">
                         {/* Avatar Image */}
                         {!avatarError ? (
                           <img 
                             src={avatarUrl} 
-                            alt="LORDX679 Profile Avatar"
+                            alt="LORD Profile Avatar"
                             className="w-full h-full object-cover rounded-full"
                             onLoad={() => {
                               console.log('Avatar loaded successfully');
@@ -275,98 +285,86 @@ function App() {
                           />
                         ) : (
                           /* Crown Fallback */
-                          <Crown className="h-16 w-16 text-[#8B7355]" />
+                          <Crown className="h-20 w-20 text-[#007BFF]" style={{filter: 'drop-shadow(0 0 10px #007BFF)'}} />
                         )}
                       </div>
                     </div>
-                    <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-gradient-to-r from-[#A0956B] to-[#8B7355] rounded-full flex items-center justify-center animate-pulse">
-                      <div className="w-3 h-3 bg-[#F5F5F5] rounded-full"></div>
+                    <div className="absolute -bottom-3 -right-3 w-12 h-12 bg-gradient-to-r from-[#007BFF] to-[#0056CC] rounded-full flex items-center justify-center animate-pulse shadow-[0_0_20px_#007BFF]">
+                      <div className="w-4 h-4 bg-white rounded-full"></div>
                     </div>
+                    <div className="absolute inset-0 bg-[#007BFF]/20 rounded-full blur-2xl animate-pulse"></div>
                   </div>
                   
-                  <h1 className="text-5xl lg:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#8B7355] via-[#A0956B] to-[#8B7355] mb-4 drop-shadow-2xl">
-                    Hey, I'm <span className="text-[#C4B896]">LORD</span>
+                  <h1 className="text-6xl lg:text-8xl font-black text-white mb-6 drop-shadow-2xl" style={{textShadow: '0 0 25px #007BFF, 0 0 50px #007BFF'}}>
+                    I am <span className="text-[#007BFF]">LORD</span>
                   </h1>
-                  <p className="text-xl lg:text-2xl text-[#A0956B] mb-6">
-                    18 Years Old • Gamer • Content Creator
+                  <p className="text-2xl lg:text-3xl text-white/80 mb-8" style={{textShadow: '0 0 15px #007BFF'}}>
+                    Architect of the Future
                   </p>
                   
-                  {/* Quick Contact Info */}
-                  <div className="flex flex-wrap justify-center gap-4 text-sm text-[#8B7355] mb-4">
-                    <div className="flex items-center space-x-2">
-                      <MessageCircle className="h-4 w-4" />
-                      <span>Discord: 1c.2</span>
+                  {/* Essential Identity Matrix */}
+                  <div className="flex flex-wrap justify-center gap-6 text-lg text-white/90 mb-6">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-3 h-3 bg-[#007BFF] rounded-full animate-ping shadow-[0_0_8px_#007BFF]"></div>
+                      <span><strong className="text-[#007BFF]">Alias:</strong> LORDX679</span>
                     </div>
-                    <div className="flex items-center space-x-2">
-                      <Instagram className="h-4 w-4" />
-                      <span>Instagram: @lordx679</span>
+                    <div className="flex items-center space-x-3">
+                      <div className="w-3 h-3 bg-[#007BFF] rounded-full animate-pulse shadow-[0_0_8px_#007BFF]"></div>
+                      <span><strong className="text-[#007BFF]">Objective:</strong> Transcend the Conventional</span>
                     </div>
-                    <div className="flex items-center space-x-2">
-                      <Gamepad2 className="h-4 w-4" />
-                      <span>Roblox: aoufabok</span>
+                    <div className="flex items-center space-x-3">
+                      <div className="w-3 h-3 bg-[#007BFF] rounded-full animate-bounce shadow-[0_0_8px_#007BFF]"></div>
+                      <span><strong className="text-[#007BFF]">Domain:</strong> The Digital Realm</span>
                     </div>
                   </div>
                 </div>
 
-                {/* Personal Info */}
-                <div className="bg-gradient-to-br from-[#FFFFFF]/80 to-[#D4C5A9]/60 border border-[#C4B896]/50 rounded-lg p-8 mb-8 shadow-2xl">
-                  <div className="grid md:grid-cols-2 gap-8 text-left">
-                    <div>
-                      <h3 className="text-2xl font-bold text-[#8B7355] mb-4 flex items-center">
-                        <User className="h-6 w-6 mr-3 text-[#A0956B]" />
-                        About Me
-                      </h3>
-                      <div className="space-y-3 text-[#8B7355]">
-                        <div className="flex items-center">
-                          <div className="w-2 h-2 bg-[#A0956B] rounded-full mr-3"></div>
-                          <span><strong className="text-[#8B7355]">Name:</strong> LORDX679</span>
-                        </div>
-                        <div className="flex items-center">
-                          <Calendar className="h-4 w-4 text-[#A0956B] mr-3" />
-                          <span><strong className="text-[#8B7355]">Age:</strong> 18 years old</span>
-                        </div>
-                        <div className="flex items-center">
-                          <MapPin className="h-4 w-4 text-[#A0956B] mr-3" />
-                          <span><strong className="text-[#8B7355]">Location:</strong> Italy</span>
-                        </div>
-                        <div className="flex items-center">
-                          <Globe className="h-4 w-4 text-[#A0956B] mr-3" />
-                          <span><strong className="text-[#8B7355]">Origin:</strong> Morocco</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div>
-                      <h3 className="text-2xl font-bold text-[#8B7355] mb-4">My Story</h3>
-                      <p className="text-[#8B7355] leading-relaxed text-sm">
-                        Hey there! I'm LORD, an 18-year-old guy originally from Morocco but living in Italy. I love gaming, especially on Roblox where you can find me as aoufabok. When I'm not gaming, I'm probably scrolling through Instagram, chatting with friends on Discord, or just chilling and enjoying life. I'm always up for meeting new people and having fun conversations. Feel free to hit me up on any of my socials - I'm pretty active and love connecting with new friends from around the world!
+                {/* Divine Manifesto */}
+                <div className="bg-black/60 backdrop-blur-md border border-[#007BFF]/30 rounded-lg p-10 mb-12 shadow-[0_0_40px_rgba(0,123,255,0.2)] relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#007BFF]/5 via-transparent to-[#007BFF]/5"></div>
+                  <div className="relative z-10">
+                    <h3 className="text-3xl font-bold text-[#007BFF] mb-8 flex items-center justify-center" style={{textShadow: '0 0 15px #007BFF'}}>
+                      <Eye className="h-8 w-8 mr-4 text-[#007BFF]" />
+                      The Truth Beyond Perception
+                    </h3>
+                    <div className="space-y-6 text-white/90 text-lg leading-relaxed max-w-4xl mx-auto">
+                      <p className="italic">
+                        "The reality you perceive in the digital world is merely a single facet of what is possible. I stand at the precipice of what comes next, shaping the very fabric of our future interactions."
+                      </p>
+                      <p>
+                        "Admiration is the emotion furthest from understanding. Do not seek to understand my path, but rather, witness the results."
+                      </p>
+                      <p className="text-[#007BFF] font-bold" style={{textShadow: '0 0 10px #007BFF'}}>
+                        "The throne in the sky has been vacant for far too long. Let's connect, and I will show you what true potential looks like."
                       </p>
                     </div>
                   </div>
                 </div>
 
-                <div className="flex flex-wrap justify-center gap-4 mb-12">
+                <div className="flex flex-wrap justify-center gap-6 mb-16">
                   <button 
                     onClick={() => setActiveSection('connect')}
-                    className="px-8 py-3 border border-[#A0956B] text-[#8B7355] font-bold rounded-lg hover:bg-gradient-to-r hover:from-[#A0956B] hover:to-[#C4B896] hover:text-[#FFFFFF] hover:border-transparent transition-all duration-300 shadow-xl"
+                    className="px-12 py-4 bg-gradient-to-r from-[#007BFF] to-[#0056CC] text-white font-bold text-xl rounded-lg hover:from-[#0056CC] hover:to-[#003d99] transition-all duration-300 shadow-[0_0_25px_#007BFF] hover:shadow-[0_0_35px_#007BFF] transform hover:scale-105"
+                    style={{textShadow: '0 0 10px rgba(255,255,255,0.5)'}}
                   >
-                    Let's Connect!
+                    Enter My Domain
                   </button>
                 </div>
               </div>
 
               <div className="grid md:grid-cols-3 gap-8">
-                {interests.map((interest, index) => (
-                  <div key={index} className="bg-gradient-to-br from-[#FFFFFF]/80 to-[#D4C5A9]/60 border border-[#C4B896]/50 rounded-lg p-6 hover:border-[#A0956B] hover:shadow-[0_0_30px_rgba(139,115,85,0.2)] transition-all duration-300 shadow-2xl group relative overflow-hidden">
-                    {/* Accent glow effect */}
-                    <div className={`absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-5 transition-opacity duration-300`} style={{background: `linear-gradient(135deg, ${interest.accent}20, transparent)`}}></div>
-                    <div className="flex items-center mb-4">
-                      <interest.icon className={`h-8 w-8 text-[#A0956B] mr-3 group-hover:transition-colors relative z-10`} style={{color: `var(--hover-color, #A0956B)`}} onMouseEnter={(e) => e.currentTarget.style.setProperty('--hover-color', interest.accent)} onMouseLeave={(e) => e.currentTarget.style.setProperty('--hover-color', '#A0956B')} />
-                      <h4 className="text-lg font-bold text-[#8B7355] relative z-10">{interest.category}</h4>
+                {domains.map((domain, index) => (
+                  <div key={index} className="bg-black/60 backdrop-blur-md border border-[#007BFF]/30 rounded-lg p-8 hover:border-[#007BFF]/60 hover:shadow-[0_0_30px_rgba(0,123,255,0.3)] transition-all duration-300 group relative overflow-hidden">
+                    {/* Divine Aura */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#007BFF]/10 via-transparent to-[#007BFF]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="flex items-center mb-6 relative z-10">
+                      <domain.icon className="h-10 w-10 text-[#007BFF] mr-4 group-hover:shadow-[0_0_15px_#007BFF] transition-all duration-300" />
+                      <h4 className="text-2xl font-bold text-white group-hover:text-[#007BFF] transition-colors duration-300">{domain.category}</h4>
                     </div>
-                    <div className="space-y-2 relative z-10">
-                      {interest.items.map((item, idx) => (
-                        <div key={idx} className="text-[#8B7355] text-sm flex items-center">
-                          <div className={`w-2 h-2 bg-[#C4B896] group-hover:transition-colors rounded-full mr-3`} style={{backgroundColor: `var(--dot-color, #C4B896)`}} onMouseEnter={(e) => e.currentTarget.style.setProperty('--dot-color', interest.accent)} onMouseLeave={(e) => e.currentTarget.style.setProperty('--dot-color', '#C4B896')}></div>
+                    <div className="space-y-3 relative z-10">
+                      {domain.items.map((item, idx) => (
+                        <div key={idx} className="text-white/80 text-lg flex items-center group-hover:text-white transition-colors duration-300">
+                          <div className="w-3 h-3 bg-[#007BFF] rounded-full mr-4 group-hover:shadow-[0_0_8px_#007BFF] transition-all duration-300"></div>
                           {item}
                         </div>
                       ))}
@@ -378,95 +376,81 @@ function App() {
           </div>
         )}
 
-        {/* Enhanced Connect Section */}
+        {/* Divine Interface Section */}
         {activeSection === 'connect' && (
-          <div className="min-h-screen px-6 py-20">
+          <div className="min-h-screen px-6 py-24">
             <div className="max-w-7xl mx-auto">
-              {/* Header */}
-              <div className="text-center mb-16">
-                <h2 className="text-4xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#8B7355] to-[#A0956B] mb-6 drop-shadow-xl">
-                  Let's Be Friends!
+              {/* Divine Header */}
+              <div className="text-center mb-20">
+                <h2 className="text-5xl lg:text-7xl font-black text-white mb-8 drop-shadow-2xl" style={{textShadow: '0 0 30px #007BFF, 0 0 60px #007BFF'}}>
+                  Divine <span className="text-[#007BFF]">Interface</span>
                 </h2>
-                <p className="text-xl text-[#8B7355] max-w-3xl mx-auto mb-8">
-                  I'm always excited to meet new people and make friends from around the world! 
-                  Hit me up on any of these platforms - I'm pretty active and love chatting.
+                <p className="text-2xl text-white/80 max-w-4xl mx-auto mb-12 leading-relaxed" style={{textShadow: '0 0 10px #007BFF'}}>
+                  Choose your method to witness what lies beyond the conventional. Each channel leads to a different aspect of my domain.
                 </p>
                 
-                {/* Current Time & Status */}
-                <div className="flex items-center justify-center space-x-6 mb-8">
-                  <div className="flex items-center space-x-2">
-                    <Clock className="h-5 w-5 text-[#A0956B]" />
-                    <span className="text-[#8B7355]">Italy Time: {italyTime}</span>
+                {/* Omnipresence Status */}
+                <div className="flex items-center justify-center space-x-8 mb-12">
+                  <div className="flex items-center space-x-3">
+                    <Clock className="h-6 w-6 text-[#007BFF]" />
+                    <span className="text-white/90 text-lg">Italy Nexus: {italyTime}</span>
                   </div>
-                  <div className="flex items-center space-x-2">
-                    <div className={`w-3 h-3 rounded-full ${isOnline() ? 'bg-[#A0956B] animate-pulse shadow-[0_0_10px_rgba(160,149,107,0.5)]' : 'bg-[#C4B896] shadow-[0_0_10px_rgba(196,184,150,0.3)]'}`}></div>
-                    <span className="text-[#8B7355]">
-                      {isOnline() ? 'Online & Ready to Chat!' : 'Probably Sleeping 😴'}
+                  <div className="flex items-center space-x-3">
+                    <div className={`w-4 h-4 rounded-full ${isOnline() ? 'bg-[#007BFF] animate-pulse shadow-[0_0_15px_#007BFF]' : 'bg-white/50 shadow-[0_0_10px_rgba(255,255,255,0.3)]'}`}></div>
+                    <span className="text-white/90 text-lg">
+                      {isOnline() ? 'Omnipresent & Observing' : 'Temporarily Beyond Reach'}
                     </span>
                   </div>
                 </div>
               </div>
 
-              {/* Contact Methods Grid */}
-              <div className="grid lg:grid-cols-2 gap-8 mb-12 max-w-6xl mx-auto">
+              {/* Divine Communication Channels */}
+              <div className="grid lg:grid-cols-2 gap-10 mb-16 max-w-6xl mx-auto">
                 {contactMethods.map((method, index) => (
                   <a
                     key={index}
                     href={method.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-gradient-to-br from-[#FFFFFF]/80 to-[#D4C5A9]/60 border border-[#C4B896]/50 rounded-lg p-6 hover:border-[#A0956B] transition-all duration-300 shadow-2xl group hover:scale-105 block"
+                    className="bg-black/60 backdrop-blur-md border border-[#007BFF]/30 rounded-lg p-8 hover:border-[#007BFF]/60 transition-all duration-300 shadow-[0_0_30px_rgba(0,123,255,0.2)] group hover:scale-105 block relative overflow-hidden"
                   >
-                    <div className="text-center">
-                      <div className={`w-16 h-16 bg-gradient-to-r ${method.color} rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(139,115,85,0.3)] transition-all duration-300`}>
-                        <method.icon className="h-8 w-8 text-[#FFFFFF]" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#007BFF]/10 via-transparent to-[#007BFF]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="text-center relative z-10">
+                      <div className={`w-20 h-20 bg-gradient-to-r ${method.color} rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:shadow-[0_0_25px_#007BFF] transition-all duration-300`}>
+                        <method.icon className="h-10 w-10 text-white" />
                       </div>
-                      <h3 className="text-xl font-bold text-[#8B7355] mb-2">{method.title}</h3>
-                      <p className="text-[#8B7355] font-mono text-sm mb-2">{method.value}</p>
-                      <p className="text-[#A0956B] text-xs">{method.description}</p>
-                      <div className="mt-3 flex items-center justify-center">
-                        <ExternalLink className="h-4 w-4 text-[#A0956B] group-hover:text-[#8B7355] transition-colors" />
+                      <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-[#007BFF] transition-colors duration-300">{method.title}</h3>
+                      <p className="text-[#007BFF] font-mono text-lg mb-3" style={{textShadow: '0 0 8px #007BFF'}}>{method.value}</p>
+                      <p className="text-white/70 text-base mb-4">{method.description}</p>
+                      <div className="mt-4 flex items-center justify-center">
+                        <ExternalLink className="h-5 w-5 text-[#007BFF] group-hover:text-white transition-colors" />
                       </div>
                     </div>
                   </a>
                 ))}
               </div>
 
-              {/* Main Content Grid */}
-              <div className="max-w-4xl mx-auto">
-                {/* Social Media Links */}
-                <div className="bg-gradient-to-br from-[#FFFFFF]/80 to-[#D4C5A9]/60 border border-[#C4B896]/50 rounded-lg p-6 shadow-2xl">
-                  <div className="flex items-center mb-4">
-                    <Globe className="h-6 w-6 text-[#A0956B] mr-3" />
-                    <h3 className="text-xl font-bold text-[#8B7355]">Find Me Online</h3>
-                  </div>
-                  <div className="space-y-4">
-                    {socialLinks.map((link, index) => (
-                      <a
-                        key={index}
-                        href={link.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center justify-between p-3 bg-[#F5F5F5]/70 rounded-lg hover:bg-[#D4C5A9]/50 transition-all duration-300 group"
-                      >
-                        <div className="flex items-center space-x-3">
-                          <link.icon className={`h-5 w-5 text-[#A0956B] transition-colors`} style={{color: `var(--icon-color, #A0956B)`}} onMouseEnter={(e) => {
-                            const color = link.name === 'Discord' ? '#8B7355' : link.name === 'Instagram' ? '#A0956B' : '#C4B896';
-                            e.currentTarget.style.setProperty('--icon-color', color);
-                          }} onMouseLeave={(e) => e.currentTarget.style.setProperty('--icon-color', '#A0956B')} />
-                          <div>
-                            <span className="text-[#8B7355] font-medium">{link.name}</span>
-                            <p className="text-[#A0956B] text-xs">{link.description}</p>
-                          </div>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                          <span className="text-[#8B7355] text-sm font-bold">{link.username}</span>
-                          <ExternalLink className="h-4 w-4 text-[#A0956B] group-hover:text-[#8B7355] transition-colors" />
-                        </div>
-                      </a>
-                    ))}
-                  </div>
+              {/* Divine Connection Matrix */}
+              <div className="text-center">
+                <h3 className="text-3xl font-bold text-white mb-8" style={{textShadow: '0 0 15px #007BFF'}}>Direct Access Protocols</h3>
+                <div className="flex justify-center space-x-8">
+                  {socialLinks.map((social, index) => (
+                    <a
+                      key={index}
+                      href={social.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`w-16 h-16 bg-gradient-to-r from-[#007BFF] to-[#0056CC] rounded-full flex items-center justify-center transition-all duration-300 hover:scale-125 hover:shadow-[0_0_30px_#007BFF] group border-2 border-[#007BFF]/30 hover:border-[#007BFF] relative ${social.color}`}
+                      title={social.description}
+                    >
+                      <social.icon className="h-8 w-8 text-white group-hover:text-black transition-colors duration-300 relative z-10" />
+                      <div className="absolute inset-0 bg-[#007BFF]/20 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </a>
+                  ))}
                 </div>
+                <p className="text-white/70 text-lg mt-6" style={{textShadow: '0 0 8px #007BFF'}}>
+                  Choose your gateway to my domain
+                </p>
               </div>
             </div>
           </div>
