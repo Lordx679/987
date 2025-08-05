@@ -335,12 +335,7 @@ export default function DynamicApp() {
                     </div>
                   )}
 
-                  {palette && (
-                    <div className="flex items-center justify-center space-x-3 mb-6">
-                      <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                      <span className="text-green-400 text-lg">تم تطبيق الألوان الديناميكية بنجاح</span>
-                    </div>
-                  )}
+
                   
 
 
