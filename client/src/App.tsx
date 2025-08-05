@@ -8,19 +8,13 @@ function App() {
   const [showWelcome, setShowWelcome] = useState(true);
   const [avatarError, setAvatarError] = useState(false);
   
-  // Use static avatar for now (Discord API requires valid user ID)
-  const [avatarUrl, setAvatarUrl] = useState("/e9c4e804b0c546262bd2bc03f593648d.jpg");
-  const [avatarLoading, setAvatarLoading] = useState(false);
+  // Fetch Discord avatar dynamically with correct user ID
+  const { avatar, loading: avatarLoading, refreshAvatar } = useDiscordAvatar();
+  const avatarUrl = avatar?.avatarUrl || "/e9c4e804b0c546262bd2bc03f593648d.jpg";
 
   // Add manual refresh on click
   const handleAvatarClick = () => {
-    setAvatarLoading(true);
-    // Simulate refresh with current avatar
-    setTimeout(() => {
-      setAvatarLoading(false);
-      // You can replace this with your actual Discord User ID when available
-      console.log("Avatar refreshed");
-    }, 1000);
+    refreshAvatar();
   };
 
   useEffect(() => {

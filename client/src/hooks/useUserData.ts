@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { fetchDiscordAvatar, type DiscordAvatarResponse } from '../lib/api';
 
-const DISCORD_USER_ID = '1c.2'; // Your actual Discord user ID
+const DISCORD_USER_ID = '394912002843344898'; // Your actual Discord user ID
 
 export function useDiscordAvatar() {
   const [avatar, setAvatar] = useState<DiscordAvatarResponse | null>(null);
