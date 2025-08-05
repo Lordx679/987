@@ -20,15 +20,25 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Method 1: Try with bot token if available
       if (botToken) {
         try {
+          console.log(`Attempting Discord API request for user ${userId} with bot token...`);
+          
           const discordResponse = await fetch(`https://discord.com/api/v10/users/${userId}`, {
             headers: {
               'Authorization': `Bot ${botToken}`,
               'Content-Type': 'application/json',
+              'User-Agent': 'LORD-Portfolio-Bot/1.0'
             },
           });
 
+          console.log(`Discord API response status: ${discordResponse.status}`);
+
           if (discordResponse.ok) {
             const userData = await discordResponse.json();
+            console.log('Discord user data received:', { 
+              username: userData.username, 
+              avatar: userData.avatar ? 'Present' : 'None',
+              discriminator: userData.discriminator 
+            });
             
             const avatarUrl = userData.avatar 
               ? `https://cdn.discordapp.com/avatars/${userId}/${userData.avatar}.png?size=256&t=${timestamp}`
@@ -45,12 +55,18 @@ export async function registerRoutes(app: Express): Promise<Server> {
               username: userData.username,
               discriminator: userData.discriminator,
               lastUpdated: timestamp,
-              method: 'bot_api'
+              method: 'bot_api',
+              hasRealAvatar: !!userData.avatar
             });
+          } else {
+            const errorText = await discordResponse.text();
+            console.error(`Discord API error ${discordResponse.status}:`, errorText);
           }
         } catch (error) {
-          console.warn('Bot token request failed:', error);
+          console.error('Bot token request failed:', error);
         }
+      } else {
+        console.log('No Discord bot token available');
       }
 
       // Method 2: Try common avatar patterns for your specific user ID
@@ -77,11 +93,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
         // Widget method failed
       }
 
-      // Method 4: For now, let's provide a better fallback that includes your actual avatar
-      // In practice, you would need to manually provide your avatar hash or use a bot token
-      
-      // Using your real Discord avatar (you'll need to provide the actual hash)
-      const knownAvatarHash = process.env.DISCORD_AVATAR_HASH; // You can set this in secrets
+      // Method 4: Try known avatar patterns for your user ID
+      const knownAvatarHash = process.env.DISCORD_AVATAR_HASH;
       
       if (knownAvatarHash) {
         const realAvatarUrl = `https://cdn.discordapp.com/avatars/${userId}/${knownAvatarHash}.png?size=256&t=${timestamp}`;
@@ -93,6 +106,34 @@ export async function registerRoutes(app: Express): Promise<Server> {
           lastUpdated: timestamp,
           method: 'known_hash'
         });
+      }
+
+      // Method 5: Try common Discord avatar formats for your user ID
+      const commonFormats = [
+        'webp',
+        'png', 
+        'jpg',
+        'gif'
+      ];
+
+      // Try a few common avatar patterns
+      for (const format of commonFormats) {
+        try {
+          const testUrl = `https://cdn.discordapp.com/avatars/${userId}/avatar.${format}?size=256&t=${timestamp}`;
+          const testResponse = await fetch(testUrl, { method: 'HEAD' });
+          
+          if (testResponse.ok) {
+            return res.json({
+              avatarUrl: testUrl,
+              username: 'LORDX679',
+              discriminator: '0000',
+              lastUpdated: timestamp,
+              method: 'discovered_format'
+            });
+          }
+        } catch (err) {
+          // Continue to next format
+        }
       }
 
       // Final fallback: Default avatar
