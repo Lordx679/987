@@ -29,15 +29,24 @@ export async function registerRoutes(app: Express): Promise<Server> {
           if (discordResponse.ok) {
             const userData = await discordResponse.json();
             
-            // Generate avatar URL
+            // Generate avatar URL with cache busting timestamp
+            const timestamp = Date.now();
             const avatarUrl = userData.avatar 
-              ? `https://cdn.discordapp.com/avatars/${userId}/${userData.avatar}.png?size=256`
+              ? `https://cdn.discordapp.com/avatars/${userId}/${userData.avatar}.png?size=256&t=${timestamp}`
               : `https://cdn.discordapp.com/embed/avatars/${parseInt(userData.discriminator) % 5}.png`;
+
+            // Set cache headers to ensure fresh avatar data
+            res.set({
+              'Cache-Control': 'no-cache, no-store, must-revalidate',
+              'Pragma': 'no-cache',
+              'Expires': '0'
+            });
 
             return res.json({
               avatarUrl,
               username: userData.username,
               discriminator: userData.discriminator,
+              lastUpdated: timestamp
             });
           }
         } catch (error) {

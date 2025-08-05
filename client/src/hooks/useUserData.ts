@@ -10,6 +10,7 @@ export function useDiscordAvatar() {
 
   useEffect(() => {
     let mounted = true;
+    let interval: NodeJS.Timeout;
 
     async function loadAvatar() {
       try {
@@ -39,10 +40,21 @@ export function useDiscordAvatar() {
       }
     }
 
+    // Load avatar immediately
     loadAvatar();
+
+    // Set up auto-refresh every 30 seconds to check for avatar changes
+    interval = setInterval(() => {
+      if (mounted) {
+        loadAvatar();
+      }
+    }, 30000);
 
     return () => {
       mounted = false;
+      if (interval) {
+        clearInterval(interval);
+      }
     };
   }, []);
 

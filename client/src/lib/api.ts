@@ -3,6 +3,7 @@ export interface DiscordAvatarResponse {
   avatarUrl: string;
   username: string;
   discriminator: string;
+  lastUpdated?: number;
 }
 
 export async function fetchDiscordAvatar(userId: string): Promise<DiscordAvatarResponse> {

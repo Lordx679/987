@@ -9,8 +9,13 @@ function App() {
   const [avatarError, setAvatarError] = useState(false);
   
   // Fetch Discord avatar dynamically
-  const { avatar, loading: avatarLoading } = useDiscordAvatar();
+  const { avatar, loading: avatarLoading, refreshAvatar } = useDiscordAvatar();
   const avatarUrl = avatar?.avatarUrl || "/e9c4e804b0c546262bd2bc03f593648d.jpg";
+
+  // Add manual refresh on click
+  const handleAvatarClick = () => {
+    refreshAvatar();
+  };
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -273,7 +278,9 @@ function App() {
                           <img 
                             src={avatarUrl} 
                             alt="LORD Profile Avatar"
-                            className="w-full h-full object-cover rounded-2xl"
+                            className="w-full h-full object-cover rounded-2xl cursor-pointer transition-all duration-300 hover:brightness-110"
+                            onClick={handleAvatarClick}
+                            title="انقر لتحديث الصورة"
                             onLoad={() => {
                               console.log('Avatar loaded successfully');
                               setAvatarError(false);
@@ -289,8 +296,12 @@ function App() {
                         )}
                       </div>
                     </div>
-                    <div className="absolute -bottom-3 -right-3 w-12 h-12 bg-gradient-to-r from-[#007BFF] to-[#0056CC] rounded-full flex items-center justify-center animate-pulse shadow-[0_0_20px_#007BFF]">
-                      <div className="w-4 h-4 bg-white rounded-full"></div>
+                    <div className="absolute -bottom-3 -right-3 w-12 h-12 bg-gradient-to-r from-[#007BFF] to-[#0056CC] rounded-full flex items-center justify-center animate-pulse shadow-[0_0_20px_#007BFF] cursor-pointer" onClick={handleAvatarClick} title="انقر لتحديث الصورة">
+                      {avatarLoading ? (
+                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                      ) : (
+                        <div className="w-4 h-4 bg-white rounded-full"></div>
+                      )}
                     </div>
                     <div className="absolute inset-0 bg-[#007BFF]/20 rounded-full blur-2xl animate-pulse"></div>
                   </div>
@@ -301,6 +312,13 @@ function App() {
                   <p className="text-2xl lg:text-3xl text-white/80 mb-8" style={{textShadow: '0 0 15px #007BFF'}}>
                     Architect of the Future
                   </p>
+                  
+                  {avatarLoading && (
+                    <div className="flex items-center justify-center space-x-3 mb-6">
+                      <div className="w-3 h-3 bg-[#007BFF] rounded-full animate-ping"></div>
+                      <span className="text-[#007BFF] text-lg">جارٍ تحديث الصورة...</span>
+                    </div>
+                  )}
                   
                   {/* Essential Identity Matrix */}
                   <div className="flex flex-wrap justify-center gap-6 text-lg text-white/90 mb-6">
