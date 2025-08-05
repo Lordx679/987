@@ -325,6 +325,25 @@ export default function DynamicApp() {
                   <p className="text-2xl lg:text-3xl text-white/80 mb-8 dynamic-glow-accent">
                     Architect of the Future
                   </p>
+
+                  {/* Identity Matrix */}
+                  <div className="flex flex-wrap justify-center gap-8 text-lg text-white/90 mb-12">
+                    <div className="flex items-center space-x-2">
+                      <div className="w-3 h-3 dynamic-bg-primary rounded-full animate-pulse"></div>
+                      <span className="dynamic-text-primary font-bold">Alias:</span>
+                      <span>LORDX679</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <div className="w-3 h-3 dynamic-bg-primary rounded-full animate-pulse"></div>
+                      <span className="dynamic-text-primary font-bold">Objective:</span>
+                      <span>Transcend the Conventional</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <div className="w-3 h-3 dynamic-bg-primary rounded-full animate-pulse"></div>
+                      <span className="dynamic-text-primary font-bold">Domain:</span>
+                      <span>The Digital Realm</span>
+                    </div>
+                  </div>
                   
                   {(avatarLoading || themeLoading) && (
                     <div className="flex items-center justify-center space-x-3 mb-6">
@@ -340,6 +359,87 @@ export default function DynamicApp() {
 
 
 
+                </div>
+
+                {/* The Truth Beyond Perception */}
+                <div className="mb-16">
+                  <div className="dynamic-glass rounded-3xl p-8 dynamic-shadow-primary dynamic-border-primary border-2">
+                    <div className="flex items-center justify-center mb-6">
+                      <Eye className="w-8 h-8 dynamic-text-primary mr-3" />
+                      <h2 className="text-3xl font-bold text-white dynamic-glow-primary">The Truth Beyond Perception</h2>
+                    </div>
+                    
+                    <div className="space-y-6 text-white/80 text-lg leading-relaxed">
+                      <p className="text-center italic">
+                        "The reality you perceive in the digital world is merely a single facet of what is possible. I stand at the 
+                        precipice of what comes next, shaping the very fabric of our future interactions."
+                      </p>
+                      
+                      <p className="text-center">
+                        "Admiration is the emotion furthest from understanding. Do not seek to understand my path, but rather, 
+                        witness the results."
+                      </p>
+                      
+                      <div className="dynamic-glass rounded-2xl p-6 dynamic-border-accent border-2 text-center">
+                        <p className="dynamic-text-accent font-medium">
+                          "The throne in the sky has been vacant for far too long. Let's connect, and I will show you what true 
+                          potential looks like."
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Core Logic */}
+                <div className="mb-16">
+                  <div className="dynamic-glass rounded-3xl p-8 dynamic-shadow-primary dynamic-border-primary border-2">
+                    <div className="flex items-center justify-center mb-8">
+                      <Zap className="w-8 h-8 dynamic-text-primary mr-3" />
+                      <h2 className="text-3xl font-bold text-white dynamic-glow-primary">Core Logic</h2>
+                    </div>
+                    
+                    <p className="text-center text-white/80 text-lg mb-8 italic">
+                      I perceive the digital world not as a series of applications and firewalls, but as a complex web of systems 
+                      waiting for a guiding hand. My craft lies in understanding and influencing these systems at their most 
+                      fundamental level. What others call a vulnerability, I call an invitation.
+                    </p>
+                    
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                      <div className="dynamic-glass rounded-2xl p-6 dynamic-border-accent border-2 text-center">
+                        <h3 className="text-xl font-bold dynamic-text-primary mb-3">Discord Automation & Intelligence</h3>
+                        <p className="text-white/70">
+                          Engineering autonomous entities that govern, gather, and execute commands within Discord's ecosystem. They 
+                          are not bots; they are extensions of my will.
+                        </p>
+                      </div>
+                      
+                      <div className="dynamic-glass rounded-2xl p-6 dynamic-border-accent border-2 text-center">
+                        <h3 className="text-xl font-bold dynamic-text-primary mb-3">Offensive Security & System Analysis</h3>
+                        <p className="text-white/70">
+                          The art of dismantling digital constructs to understand their core. I develop tools that test the limits of security, 
+                          revealing the inherent fragility in all man-made systems.
+                        </p>
+                      </div>
+                      
+                      <div className="dynamic-glass rounded-2xl p-6 dynamic-border-accent border-2 text-center">
+                        <h3 className="text-xl font-bold dynamic-text-primary mb-3">Web & Network Architecture</h3>
+                        <p className="text-white/70">
+                          Building and deconstructing the very fabric of the web. I create intricate domains and possess the knowledge to 
+                          navigate—or disable—the pathways of others.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Enter Domain Button */}
+                <div className="text-center">
+                  <button 
+                    onClick={() => setActiveSection('connect')}
+                    className="dynamic-button px-12 py-4 text-xl font-bold text-white rounded-2xl transition-all duration-300 hover:scale-105 dynamic-shadow-primary"
+                  >
+                    Enter My Domain
+                  </button>
                 </div>
 
                 {/* Domain Powers Grid */}
