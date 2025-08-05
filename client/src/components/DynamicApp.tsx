@@ -3,30 +3,26 @@ import { MessageCircle, Instagram, Crown, User, Mail, ExternalLink, MapPin, Cale
 import { useDiscordAvatar } from '../hooks/useUserData';
 import { useDynamicTheme } from '../contexts/DynamicThemeContext';
 import ColorThemeController from './ColorThemeController';
-import AvatarUploader from './AvatarUploader';
+
 
 export default function DynamicApp() {
   const [currentTime, setCurrentTime] = useState(new Date());
   const [activeSection, setActiveSection] = useState('welcome');
   const [showWelcome, setShowWelcome] = useState(true);
   const [avatarError, setAvatarError] = useState(false);
-  const [customAvatarUrl, setCustomAvatarUrl] = useState<string | null>(null);
+
   
   // Fetch Discord avatar dynamically with correct user ID
   const { avatar, loading: avatarLoading, refreshAvatar } = useDiscordAvatar();
   const { palette, loading: themeLoading } = useDynamicTheme();
-  const avatarUrl = customAvatarUrl || avatar?.avatarUrl || "/e9c4e804b0c546262bd2bc03f593648d.jpg";
+  const avatarUrl = avatar?.avatarUrl || "/e9c4e804b0c546262bd2bc03f593648d.jpg";
 
   // Add manual refresh on click
   const handleAvatarClick = () => {
     refreshAvatar();
   };
 
-  // Handle avatar update from uploader
-  const handleAvatarUpdate = (newAvatarUrl: string) => {
-    setCustomAvatarUrl(newAvatarUrl);
-    setAvatarError(false);
-  };
+
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -346,13 +342,7 @@ export default function DynamicApp() {
                     </div>
                   )}
                   
-                  {/* Avatar Upload Button */}
-                  <div className="flex justify-center mb-8">
-                    <AvatarUploader 
-                      onAvatarUpdate={handleAvatarUpdate}
-                      currentAvatar={avatarUrl}
-                    />
-                  </div>
+
 
                   {/* Essential Identity Matrix */}
                   <div className="flex flex-wrap justify-center gap-6 text-lg text-white/90 mb-6">

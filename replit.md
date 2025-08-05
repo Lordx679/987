@@ -67,6 +67,7 @@ A powerful personal portfolio website for LORDX679, transformed with an Aizen-in
   - Responsive design with mobile support
   - Keyboard shortcuts and accessibility features
   - User ID: 394912002843344898 integration
+- **Removed Manual Upload**: Per user preference, removed AvatarUploader component and manual image upload functionality - system now relies purely on Discord API integration
 
 ## Technical Implementation
 - **Discord API Integration**: Secure server-side avatar fetching with proper error handling and auto-refresh
