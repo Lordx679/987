@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { MessageCircle, Instagram, Crown, User, Mail, ExternalLink, MapPin, Calendar, Clock, Globe, Star, Heart, Gamepad2, Eye, Zap } from 'lucide-react';
 import { useDiscordAvatar } from '../hooks/useUserData';
 import { useDynamicTheme } from '../contexts/DynamicThemeContext';
-import ColorThemeController from './ColorThemeController';
+
 
 
 export default function DynamicApp() {
@@ -470,8 +470,6 @@ export default function DynamicApp() {
         )}
       </main>
 
-      {/* Color Theme Controller */}
-      <ColorThemeController />
     </div>
   );
 }
