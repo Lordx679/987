@@ -291,9 +291,7 @@ export default function DynamicApp() {
                           <img 
                             src={avatarUrl} 
                             alt="LORD Profile Avatar"
-                            className="w-full h-full object-cover rounded-2xl cursor-pointer transition-all duration-300 hover:brightness-110"
-                            onClick={handleAvatarClick}
-                            title="انقر لتحديث الصورة واستخراج الألوان"
+                            className="w-full h-full object-cover rounded-2xl transition-all duration-300"
                             onLoad={() => {
                               console.log('Avatar loaded successfully');
                               setAvatarError(false);
@@ -309,12 +307,8 @@ export default function DynamicApp() {
                         )}
                       </div>
                     </div>
-                    <div className="absolute -bottom-3 -right-3 w-12 h-12 dynamic-gradient-2 rounded-full flex items-center justify-center animate-pulse dynamic-shadow-primary cursor-pointer" onClick={handleAvatarClick} title="انقر لتحديث الصورة">
-                      {avatarLoading || themeLoading ? (
-                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                      ) : (
-                        <div className="w-4 h-4 bg-white rounded-full"></div>
-                      )}
+                    <div className="absolute -bottom-3 -right-3 w-12 h-12 dynamic-gradient-2 rounded-full flex items-center justify-center animate-pulse dynamic-shadow-primary">
+                      <div className="w-4 h-4 bg-white rounded-full"></div>
                     </div>
                     <div className="absolute inset-0 dynamic-bg-primary-opacity rounded-full blur-2xl animate-pulse"></div>
                   </div>
@@ -345,14 +339,7 @@ export default function DynamicApp() {
                     </div>
                   </div>
                   
-                  {(avatarLoading || themeLoading) && (
-                    <div className="flex items-center justify-center space-x-3 mb-6">
-                      <div className="w-3 h-3 dynamic-bg-primary rounded-full animate-ping"></div>
-                      <span className="dynamic-text-primary text-lg">
-                        {themeLoading ? 'جارٍ استخراج الألوان...' : 'جارٍ تحديث الصورة...'}
-                      </span>
-                    </div>
-                  )}
+
 
 
                   
