@@ -206,15 +206,8 @@ export default function DynamicApp() {
               <div className="h-full dynamic-gradient-2 rounded-full animate-pulse transform origin-left scale-x-0 animate-[scaleX_4s_ease-in-out_forwards] dynamic-shadow-primary"></div>
             </div>
             <p className="text-white/70 text-lg mt-6 animate-pulse delay-1000 dynamic-glow-accent">
-              {palette ? 'تطبيق الألوان الديناميكية...' : 'Transcending the Conventional...'}
+              Transcending the Conventional...
             </p>
-            {themeLoading && (
-              <div className="flex items-center justify-center space-x-2 mt-4">
-                <div className="w-2 h-2 dynamic-bg-primary rounded-full animate-bounce"></div>
-                <div className="w-2 h-2 dynamic-bg-accent rounded-full animate-bounce delay-100"></div>
-                <div className="w-2 h-2 dynamic-bg-primary rounded-full animate-bounce delay-200"></div>
-              </div>
-            )}
           </div>
         </div>
 
